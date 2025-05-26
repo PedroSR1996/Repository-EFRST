@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "122771045692",
+    "project_id": "proyectoefrst",
+    "storage_bucket": "proyectoefrst.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122771045692:android:609f18aa70e05b85f5b239",
+        "android_client_info": {
+          "package_name": "pe.edu.cibertec.proyecto_efrst"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu52Ut6vCEaIsCf8kVB2Zzt5_tZbtV21s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
