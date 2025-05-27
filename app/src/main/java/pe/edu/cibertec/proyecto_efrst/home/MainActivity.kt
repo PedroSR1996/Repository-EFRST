@@ -1,4 +1,4 @@
-package pe.edu.cibertec.proyecto_efrst
+package pe.edu.cibertec.proyecto_efrst.home
 
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.FirebaseApp
+import pe.edu.cibertec.proyecto_efrst.R
 
-class MainActivity : AppCompatActivity() {
+class `MainActivity` : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
