@@ -1,5 +1,57 @@
 package pe.edu.cibertec.proyecto_efrst.home
 
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import pe.edu.cibertec.proyecto_efrst.databinding.ActivityMainBinding
+import pe.edu.cibertec.proyecto_efrst.activities.LoginActivity
+import pe.edu.cibertec.proyecto_efrst.firebase.AuthManager
+import pe.edu.cibertec.proyecto_efrst.firebase.FirestoreManager
+import pe.edu.cibertec.proyecto_efrst.models.User
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private var currentUser: User? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        loadUser()
+
+        binding.btnLogout.setOnClickListener {
+            AuthManager.logout()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun loadUser() {
+        val uid = AuthManager.getCurrentUserId()
+        if (uid != null) {
+            FirestoreManager.getUser(uid) { user ->
+                if (user != null) {
+                    currentUser = user
+                    binding.tvWelcome.text = "Bienvenido, ${user.name}!"
+                } else {
+                    Toast.makeText(this, "No se pudo cargar el usuario", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            Toast.makeText(this, "Usuario no autenticado", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+}
+
+/*
+package pe.edu.cibertec.proyecto_efrst.home
+
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -29,3 +81,4 @@ class `MainActivity` : AppCompatActivity() {
         }
     }
 }
+*/
