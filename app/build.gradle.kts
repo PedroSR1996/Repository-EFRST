@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.navigation.safe.args)  // Usa el alias que definiste en TOML
     id("kotlin-kapt")
 }
 
@@ -52,10 +53,11 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx")
-    implementation ("com.google.android.material:material:1.9.0")
-    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.0")
-    implementation ("androidx.navigation:navigation-ui-ktx:2.7.0")
+    implementation("com.google.android.material:material:1.9.0")
 
+    // Navigation Components (usando alias)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     implementation("androidx.cardview:cardview:1.0.0")
 
@@ -66,3 +68,4 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+

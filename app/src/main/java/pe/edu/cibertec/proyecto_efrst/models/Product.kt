@@ -6,7 +6,7 @@ data class Product(
     val description: String = "",
     val price: Double = 0.0,
     val imageUrl: String = "",
-    val brand: String = "",         // si ya lo tienes
+    val brand: String = "",       
     val category: String = "",
-    val stock: Int = 0// NUEVO CAMPO
+    val stock: Int = 0
 )

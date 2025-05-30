@@ -1,4 +1,4 @@
-package pe.edu.cibertec.proyecto_efrst.home
+package pe.edu.cibertec.proyecto_efrst.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import pe.edu.cibertec.proyecto_efrst.R
 import pe.edu.cibertec.proyecto_efrst.activities.LoginActivity
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentHomeBinding
 import pe.edu.cibertec.proyecto_efrst.firebase.AuthManager
@@ -41,7 +43,8 @@ class HomeFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             AuthManager.logout()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
             requireActivity().finish()
         }
     }
@@ -59,15 +62,16 @@ class HomeFragment : Fragment() {
             }
         } else {
             Toast.makeText(requireContext(), "Usuario no autenticado", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
             requireActivity().finish()
         }
     }
 
     private fun openProductList(categoria: String) {
-        val intent = Intent(requireContext(), ProductListActivity::class.java)
-        intent.putExtra("categoria", categoria)
-        startActivity(intent)
+        // Usando Safe Args para navegar con argumento
+        val action = HomeFragmentDirections.actionHomeFragmentToProductListFragment(categoria)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {
