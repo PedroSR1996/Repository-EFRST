@@ -52,6 +52,10 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation ("com.google.android.material:material:1.9.0")
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.7.0")
+    implementation ("androidx.navigation:navigation-ui-ktx:2.7.0")
+
 
     implementation("androidx.cardview:cardview:1.0.0")
 

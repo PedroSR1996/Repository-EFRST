@@ -7,5 +7,6 @@ data class Product(
     val price: Double = 0.0,
     val imageUrl: String = "",
     val brand: String = "",         // si ya lo tienes
-    val category: String = ""       // NUEVO CAMPO
+    val category: String = "",
+    val stock: Int = 0// NUEVO CAMPO
 )

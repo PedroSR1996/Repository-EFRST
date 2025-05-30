@@ -1,63 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <!-- Contenedor para los fragmentos -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@menu/nav_graph"
+        app:defaultNavHost="true" />
+
+    <!-- Barra de navegación inferior -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_nav_menu" />
 
-        <TextView
-            android:id="@+id/tvWelcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bienvenido"
-            android:textSize="20sp"
-            android:layout_marginBottom="24dp" />
-
-        <!-- Botones por categoría -->
-        <Button
-            android:id="@+id/btnTodos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ver todo"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:id="@+id/btnLaptops"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Laptops"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:id="@+id/btnTeclados"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Teclados"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:id="@+id/btnMouse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Mouse"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:id="@+id/btnMonitores"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Monitores"
-            android:layout_marginBottom="16dp" />
-
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cerrar sesión" />
-    </LinearLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

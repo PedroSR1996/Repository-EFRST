@@ -21,14 +21,17 @@ class ProductListActivity : AppCompatActivity() {
         binding = ActivityProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtener la categoría enviada desde MainActivity
+        // Recibir la categoría desde el intent (puede ser "Todos" u otra)
         categoriaSeleccionada = intent.getStringExtra("categoria") ?: "Todos"
 
+        setupRecyclerView()
+        loadProducts()
+    }
+
+    private fun setupRecyclerView() {
         adapter = ProductAdapter(productList)
         binding.recyclerViewProducts.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewProducts.adapter = adapter
-
-        loadProducts()
     }
 
     private fun loadProducts() {
@@ -39,12 +42,16 @@ class ProductListActivity : AppCompatActivity() {
                 for (doc in documents) {
                     val product = doc.toObject(Product::class.java)
 
-                    // Si la categoría es "Todos", agrega todos
-                    // Si no, agrega solo los que coinciden
+                    // Filtrar por categoría seleccionada
                     if (categoriaSeleccionada == "Todos" || product.category == categoriaSeleccionada) {
                         productList.add(product)
                     }
                 }
+
+                if (productList.isEmpty()) {
+                    Toast.makeText(this, "No hay productos en esta categoría", Toast.LENGTH_SHORT).show()
+                }
+
                 adapter.notifyDataSetChanged()
             }
             .addOnFailureListener {

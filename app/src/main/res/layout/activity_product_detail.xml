@@ -52,5 +52,14 @@
             android:textSize="18sp"
             android:textColor="@android:color/holo_green_dark"
             android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvProductStockDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stock: 0"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"/>
+
     </LinearLayout>
 </ScrollView>

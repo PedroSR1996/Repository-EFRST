@@ -1,19 +1,17 @@
 package pe.edu.cibertec.proyecto_efrst.home
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import pe.edu.cibertec.proyecto_efrst.activities.LoginActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import pe.edu.cibertec.proyecto_efrst.R
 import pe.edu.cibertec.proyecto_efrst.databinding.ActivityMainBinding
-import pe.edu.cibertec.proyecto_efrst.firebase.AuthManager
-import pe.edu.cibertec.proyecto_efrst.firebase.FirestoreManager
-import pe.edu.cibertec.proyecto_efrst.models.User
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var currentUser: User? = null
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,44 +19,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loadUser()
+        // Configurar el NavController con el BottomNavigationView
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
 
-        // Botones de categoría
-        binding.btnTodos.setOnClickListener { openProductList("Todos") }
-        binding.btnLaptops.setOnClickListener { openProductList("Laptops") }
-        binding.btnTeclados.setOnClickListener { openProductList("Teclados") }
-        binding.btnMouse.setOnClickListener { openProductList("Mouse") }
-        binding.btnMonitores.setOnClickListener { openProductList("Monitores") }
-
-        binding.btnLogout.setOnClickListener {
-            AuthManager.logout()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-    }
-
-    private fun loadUser() {
-        val uid = AuthManager.getCurrentUserId()
-        if (uid != null) {
-            FirestoreManager.getUser(uid) { user ->
-                if (user != null) {
-                    currentUser = user
-                    binding.tvWelcome.text = "Bienvenido, ${user.name}!"
-                } else {
-                    Toast.makeText(this, "No se pudo cargar el usuario", Toast.LENGTH_SHORT).show()
-                }
-            }
-        } else {
-            Toast.makeText(this, "Usuario no autenticado", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
-    }
-
-    private fun openProductList(categoria: String) {
-        val intent = Intent(this, ProductListActivity::class.java)
-        intent.putExtra("categoria", categoria)
-        startActivity(intent)
+        navController = navHostFragment.navController
+        binding.bottomNavigation.setupWithNavController(navController)
     }
 }
 

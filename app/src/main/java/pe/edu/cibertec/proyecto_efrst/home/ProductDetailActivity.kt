@@ -18,6 +18,7 @@ class ProductDetailActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val brand = intent.getStringExtra("brand")
         val price = intent.getDoubleExtra("price", 0.0)
+        val stock = intent.getIntExtra("stock", 0)
         val description = intent.getStringExtra("description")
         val imageUrl = intent.getStringExtra("imageUrl")
 
@@ -25,6 +26,7 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.tvProductNameDetail.text = name
         binding.tvProductBrandDetail.text = brand
         binding.tvProductPriceDetail.text = "S/ $price"
+        binding.tvProductStockDetail.text = "Stock: $stock"
         binding.tvProductDescription.text = description
 
         // Cargando imagen
