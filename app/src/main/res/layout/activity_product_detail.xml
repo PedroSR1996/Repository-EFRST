@@ -13,8 +13,9 @@
         <ImageView
             android:id="@+id/imgProductDetail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:contentDescription="@string/product_image" />
 
         <TextView
@@ -27,12 +28,12 @@
             android:layout_marginTop="16dp"/>
 
         <TextView
-            android:id="@+id/tvProductPriceDetail"
+            android:id="@+id/tvProductBrandDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="S/ 0.00"
-            android:textSize="18sp"
-            android:textColor="@android:color/holo_green_dark"
+            android:text="Marca del producto"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
             android:layout_marginTop="8dp"/>
 
         <TextView
@@ -43,5 +44,13 @@
             android:layout_marginTop="12dp"
             android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/tvProductPriceDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="S/ 0.00"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_marginTop="8dp"/>
     </LinearLayout>
 </ScrollView>

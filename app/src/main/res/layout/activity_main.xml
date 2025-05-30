@@ -1,22 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="24dp"
-    android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bienvenido"
-        android:textSize="20sp"
-        android:layout_marginBottom="24dp" />
-
-    <Button
-        android:id="@+id/btnLogout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cerrar sesión" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido"
+            android:textSize="20sp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Botones por categoría -->
+        <Button
+            android:id="@+id/btnTodos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver todo"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnLaptops"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Laptops"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnTeclados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Teclados"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnMouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mouse"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnMonitores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Monitores"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesión" />
+    </LinearLayout>
+</ScrollView>

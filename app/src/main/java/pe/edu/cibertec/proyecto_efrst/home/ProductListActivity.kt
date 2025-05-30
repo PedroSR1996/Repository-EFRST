@@ -14,11 +14,15 @@ class ProductListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProductListBinding
     private lateinit var adapter: ProductAdapter
     private val productList = mutableListOf<Product>()
+    private var categoriaSeleccionada: String = "Todos"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Obtener la categoría enviada desde MainActivity
+        categoriaSeleccionada = intent.getStringExtra("categoria") ?: "Todos"
 
         adapter = ProductAdapter(productList)
         binding.recyclerViewProducts.layoutManager = LinearLayoutManager(this)
@@ -34,7 +38,12 @@ class ProductListActivity : AppCompatActivity() {
                 productList.clear()
                 for (doc in documents) {
                     val product = doc.toObject(Product::class.java)
-                    productList.add(product)
+
+                    // Si la categoría es "Todos", agrega todos
+                    // Si no, agrega solo los que coinciden
+                    if (categoriaSeleccionada == "Todos" || product.category == categoriaSeleccionada) {
+                        productList.add(product)
+                    }
                 }
                 adapter.notifyDataSetChanged()
             }

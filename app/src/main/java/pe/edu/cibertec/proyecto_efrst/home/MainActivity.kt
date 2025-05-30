@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import pe.edu.cibertec.proyecto_efrst.databinding.ActivityMainBinding
 import pe.edu.cibertec.proyecto_efrst.activities.LoginActivity
+import pe.edu.cibertec.proyecto_efrst.databinding.ActivityMainBinding
 import pe.edu.cibertec.proyecto_efrst.firebase.AuthManager
 import pe.edu.cibertec.proyecto_efrst.firebase.FirestoreManager
 import pe.edu.cibertec.proyecto_efrst.models.User
@@ -22,6 +22,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadUser()
+
+        // Botones de categoría
+        binding.btnTodos.setOnClickListener { openProductList("Todos") }
+        binding.btnLaptops.setOnClickListener { openProductList("Laptops") }
+        binding.btnTeclados.setOnClickListener { openProductList("Teclados") }
+        binding.btnMouse.setOnClickListener { openProductList("Mouse") }
+        binding.btnMonitores.setOnClickListener { openProductList("Monitores") }
 
         binding.btnLogout.setOnClickListener {
             AuthManager.logout()
@@ -47,7 +54,14 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun openProductList(categoria: String) {
+        val intent = Intent(this, ProductListActivity::class.java)
+        intent.putExtra("categoria", categoria)
+        startActivity(intent)
+    }
 }
+
 
 /*
 package pe.edu.cibertec.proyecto_efrst.home
