@@ -1,5 +1,6 @@
 package pe.edu.cibertec.proyecto_efrst.activities
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -10,21 +11,48 @@ import pe.edu.cibertec.proyecto_efrst.firebase.FirestoreManager
 import pe.edu.cibertec.proyecto_efrst.models.User
 import pe.edu.cibertec.proyecto_efrst.utils.Validators
 import pe.edu.cibertec.proyecto_efrst.home.MainActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    // ViewBinding
     private lateinit var binding: ActivityRegisterBinding
+    private val calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Selector de fecha
+        binding.etBirthDate.setOnClickListener {
+            val datePicker = DatePickerDialog(
+                this,
+                { _, year, month, dayOfMonth ->
+                    calendar.set(year, month, dayOfMonth)
+                    val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    binding.etBirthDate.setText(sdf.format(calendar.time))
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+            datePicker.show()
+        }
+
         binding.btnRegister.setOnClickListener {
             val name = binding.etName.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
+            val phone = binding.etPhone.text.toString().trim()
+            val address = binding.etAddress.text.toString().trim()
+            val birthDate = binding.etBirthDate.text.toString().trim() // dd/MM/yyyy
+
+            // Validaciones
+            if (name.isEmpty() || phone.isEmpty() || address.isEmpty() || birthDate.isEmpty()) {
+                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             if (!Validators.isValidEmail(email)) {
                 binding.etEmail.error = "Correo inválido"
@@ -36,14 +64,28 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            registerUser(name, email, password)
+            registerUser(name, email, password, phone, address, birthDate)
         }
     }
 
-    private fun registerUser(name: String, email: String, password: String) {
+    private fun registerUser(
+        name: String,
+        email: String,
+        password: String,
+        phone: String,
+        address: String,
+        birthDate: String
+    ) {
         AuthManager.register(email, password) { isSuccess, uid, errorMsg ->
             if (isSuccess && uid != null) {
-                val user = User(uid, name, email)
+                val user = User(
+                    id = uid,
+                    name = name,
+                    email = email,
+                    phone = phone,
+                    address = address,
+                    birthDate = birthDate
+                )
                 FirestoreManager.saveUser(user) { saved ->
                     if (saved) {
                         Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()

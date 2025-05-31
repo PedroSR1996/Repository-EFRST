@@ -5,4 +5,11 @@
     android:background="@android:color/white">
 
     <!-- Aquí puedes poner contenido del perfil -->
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar sesión"
+        android:layout_marginTop="16dp"/>
+
 </FrameLayout>

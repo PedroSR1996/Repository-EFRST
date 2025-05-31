@@ -41,12 +41,6 @@ class HomeFragment : Fragment() {
         binding.btnMouse.setOnClickListener { openProductList("Mouse") }
         binding.btnMonitores.setOnClickListener { openProductList("Monitores") }
 
-        binding.btnLogout.setOnClickListener {
-            AuthManager.logout()
-            val intent = Intent(requireContext(), LoginActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish()
-        }
     }
 
     private fun loadUser() {
