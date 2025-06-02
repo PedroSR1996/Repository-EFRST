@@ -53,7 +53,7 @@
                 android:textSize="14sp"
                 android:layout_marginTop="4dp" />
 
-            <!-- Stock + Botón de favorito en una sola fila -->
+            <!-- Stock + Botón de favorito -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,6 +78,17 @@
                     android:contentDescription="Favorito" />
             </LinearLayout>
 
+            <!-- 🔴 Botón Eliminar -->
+            <Button
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eliminar"
+                android:visibility="gone"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
