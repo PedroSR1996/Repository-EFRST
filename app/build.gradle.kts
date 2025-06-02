@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.services)
     alias(libs.plugins.navigation.safe.args)  // Usa el alias que definiste en TOML
     id("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 android {
