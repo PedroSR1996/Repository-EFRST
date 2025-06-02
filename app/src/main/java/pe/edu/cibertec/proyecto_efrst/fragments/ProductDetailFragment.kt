@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -19,6 +20,7 @@ class ProductDetailFragment : Fragment() {
     private lateinit var product: Product
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
+    private var isFavorite = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,15 +48,84 @@ class ProductDetailFragment : Fragment() {
             .into(binding.imgProductDetail)
 
         binding.btnAddToCart.setOnClickListener {
-            addToCollection("cart")
+            addToCart()
         }
 
         binding.btnAddToFavorites.setOnClickListener {
-            addToCollection("favorites")
+            toggleFavorite()
+        }
+
+        checkIfFavorite()
+    }
+
+    private fun checkIfFavorite() {
+        val userId = auth.currentUser?.uid ?: return
+        db.collection("users")
+            .document(userId)
+            .collection("favorites")
+            .document(product.id)
+            .get()
+            .addOnSuccessListener { document ->
+                isFavorite = document.exists()
+                updateFavoriteButton()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error al verificar favorito", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun toggleFavorite() {
+        val userId = auth.currentUser?.uid
+        if (userId == null) {
+            Toast.makeText(requireContext(), "Debes iniciar sesión", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val favoritesRef = db.collection("users")
+            .document(userId)
+            .collection("favorites")
+            .document(product.id)
+
+        if (isFavorite) {
+            // Quitar de favoritos
+            favoritesRef.delete()
+                .addOnSuccessListener {
+                    isFavorite = false
+                    updateFavoriteButton()
+                    Toast.makeText(requireContext(), "Eliminado de favoritos", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(), "Error al quitar de favoritos", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            // Agregar a favoritos
+            favoritesRef.set(product)
+                .addOnSuccessListener {
+                    isFavorite = true
+                    updateFavoriteButton()
+                    Toast.makeText(requireContext(), "Agregado a favoritos", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(requireContext(), "Error al agregar a favoritos", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 
-    private fun addToCollection(collection: String) {
+    private fun updateFavoriteButton() {
+        if (isFavorite) {
+            binding.btnAddToFavorites.text = "Quitar de favoritos"
+            binding.btnAddToFavorites.setBackgroundTintList(
+                ContextCompat.getColorStateList(requireContext(), android.R.color.darker_gray)
+            )
+        } else {
+            binding.btnAddToFavorites.text = "Agregar a favoritos"
+            binding.btnAddToFavorites.setBackgroundTintList(
+                ContextCompat.getColorStateList(requireContext(), android.R.color.holo_red_dark)
+            )
+        }
+    }
+
+    private fun addToCart() {
         val userId = auth.currentUser?.uid
         if (userId == null) {
             Toast.makeText(requireContext(), "Debes iniciar sesión", Toast.LENGTH_SHORT).show()
@@ -63,14 +134,14 @@ class ProductDetailFragment : Fragment() {
 
         db.collection("users")
             .document(userId)
-            .collection(collection)
+            .collection("cart")
             .document(product.id)
             .set(product)
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Agregado a $collection", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Error al agregar", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Error al agregar al carrito", Toast.LENGTH_SHORT).show()
             }
     }
 
