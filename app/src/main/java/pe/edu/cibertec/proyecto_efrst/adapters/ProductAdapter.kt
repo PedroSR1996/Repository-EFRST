@@ -12,8 +12,9 @@ import pe.edu.cibertec.proyecto_efrst.databinding.ItemProductBinding
 import pe.edu.cibertec.proyecto_efrst.models.Product
 
 class ProductAdapter(
-    private val products: List<Product>,
-    private val onItemClick: (Product) -> Unit
+    private val products: MutableList<Product>, // Debe ser mutable para eliminar
+    private val onItemClick: (Product) -> Unit,
+    private val onFavoriteToggled: (() -> Unit)? = null // Callback opcional
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     private val firestore = FirebaseFirestore.getInstance()
@@ -44,23 +45,17 @@ class ProductAdapter(
             binding.btnFavorite.setOnClickListener {
                 favRef.get().addOnSuccessListener { snapshot ->
                     if (snapshot.exists()) {
-                        favRef.delete()
-                            .addOnSuccessListener {
-                                updateFavoriteIcon(false)
-                                Toast.makeText(binding.root.context, "Eliminado de favoritos", Toast.LENGTH_SHORT).show()
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(binding.root.context, "Error al eliminar", Toast.LENGTH_SHORT).show()
-                            }
+                        favRef.delete().addOnSuccessListener {
+                            updateFavoriteIcon(false)
+                            Toast.makeText(binding.root.context, "Eliminado de favoritos", Toast.LENGTH_SHORT).show()
+                            onFavoriteToggled?.invoke() // 🔁 Notifica al fragmento
+                        }
                     } else {
-                        favRef.set(product)
-                            .addOnSuccessListener {
-                                updateFavoriteIcon(true)
-                                Toast.makeText(binding.root.context, "Agregado a favoritos", Toast.LENGTH_SHORT).show()
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(binding.root.context, "Error al agregar", Toast.LENGTH_SHORT).show()
-                            }
+                        favRef.set(product).addOnSuccessListener {
+                            updateFavoriteIcon(true)
+                            Toast.makeText(binding.root.context, "Agregado a favoritos", Toast.LENGTH_SHORT).show()
+                            onFavoriteToggled?.invoke()
+                        }
                     }
                 }
             }
