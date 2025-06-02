@@ -28,8 +28,6 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".home.MainActivity" />
-        <activity android:name=".home.ProductListActivity" />
-        <activity android:name=".home.ProductDetailActivity" />
 
 
     </application>
