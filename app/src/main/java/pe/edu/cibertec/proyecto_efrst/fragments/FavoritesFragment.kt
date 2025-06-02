@@ -32,18 +32,25 @@ class FavoritesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        adapter = ProductAdapter(favorites) { product ->
-            val action = FavoritesFragmentDirections
-                .actionFavoritesFragmentToProductDetailFragment(product)
-            findNavController().navigate(action)
-        }
+        super.onViewCreated(view, savedInstanceState)
+
+        adapter = ProductAdapter(favorites,
+            onItemClick = { product ->
+                val action = FavoritesFragmentDirections
+                    .actionFavoritesFragmentToProductDetailFragment(product)
+                findNavController().navigate(action)
+            },
+            onFavoriteToggled = {
+                loadFavorites() // 🔁 Recarga la lista
+            }
+        )
 
         binding.rvFavorites.layoutManager = LinearLayoutManager(requireContext())
         binding.rvFavorites.adapter = adapter
 
-        // Cargar favoritos al iniciar
         loadFavorites()
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -64,11 +71,13 @@ class FavoritesFragment : Fragment() {
                 }
                 adapter.notifyDataSetChanged()
 
-                // Mostrar mensaje si no hay favoritos
-                binding.tvEmptyFavorites.visibility = if (favorites.isEmpty()) View.VISIBLE else View.GONE
+                // Mostrar/ocultar mensaje de lista vacía
+                binding.tvEmptyFavorites.visibility =
+                    if (favorites.isEmpty()) View.VISIBLE else View.GONE
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error al cargar favoritos", Toast.LENGTH_SHORT).show()
             }
     }
+
 }

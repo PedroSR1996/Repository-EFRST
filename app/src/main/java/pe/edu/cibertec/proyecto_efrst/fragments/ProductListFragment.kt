@@ -39,11 +39,15 @@ class ProductListFragment : Fragment() {
             ProductListFragmentArgs.fromBundle(it).categoria
         } ?: "Todos"
 
-        adapter = ProductAdapter(products) { product ->
-            val action = ProductListFragmentDirections
-                .actionProductListFragmentToProductDetailFragment(product)
-            findNavController().navigate(action)
-        }
+        adapter = ProductAdapter(products,
+            onItemClick = { product ->
+                val action = ProductListFragmentDirections
+                    .actionProductListFragmentToProductDetailFragment(product)
+                findNavController().navigate(action)
+            },
+            onFavoriteToggled = null // No necesitas actualizar la lista aquí
+        )
+
 
         binding.recyclerViewProducts.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewProducts.adapter = adapter
