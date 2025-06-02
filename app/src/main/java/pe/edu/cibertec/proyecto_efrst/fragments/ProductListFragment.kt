@@ -1,11 +1,13 @@
 package pe.edu.cibertec.proyecto_efrst.fragments
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import pe.edu.cibertec.proyecto_efrst.adapters.ProductAdapter
@@ -14,62 +16,58 @@ import pe.edu.cibertec.proyecto_efrst.models.Product
 
 class ProductListFragment : Fragment() {
 
-    private var _binding: FragmentProductListBinding? = null
-    private val binding get() = _binding!!
-
+    private lateinit var binding: FragmentProductListBinding
+    private val firestore = FirebaseFirestore.getInstance()
+    private val products = mutableListOf<Product>()
     private lateinit var adapter: ProductAdapter
-    private val productList = mutableListOf<Product>()
-    private var categoriaSeleccionada: String = "Todos"
+
+    private var categoria: String = "Todos"  // Argumento que recibimos
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProductListBinding.inflate(inflater, container, false)
+        binding = FragmentProductListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Obtener categoría desde Safe Args (los argumentos)
-        arguments?.let {
-            categoriaSeleccionada = ProductListFragmentArgs.fromBundle(it).categoria
+        // Obtener categoría desde argumentos
+        categoria = arguments?.let {
+            ProductListFragmentArgs.fromBundle(it).categoria
+        } ?: "Todos"
+
+        adapter = ProductAdapter(products) { product ->
+            val action = ProductListFragmentDirections
+                .actionProductListFragmentToProductDetailFragment(product)
+            findNavController().navigate(action)
         }
 
-        setupRecyclerView()
-        loadProducts()
-    }
-
-    private fun setupRecyclerView() {
-        adapter = ProductAdapter(productList)
         binding.recyclerViewProducts.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewProducts.adapter = adapter
+
+        loadProducts()
     }
-
+    
     private fun loadProducts() {
-        val db = FirebaseFirestore.getInstance()
-        val collectionRef = db.collection("products")
-
-        collectionRef.get()
-            .addOnSuccessListener { documents ->
-                productList.clear()
-                for (document in documents) {
+        firestore.collection("products")
+            .get()
+            .addOnSuccessListener { result ->
+                products.clear()
+                for (document in result) {
                     val product = document.toObject(Product::class.java)
-                    // Filtrar por categoría si no es "Todos"
-                    if (categoriaSeleccionada == "Todos" || product.category == categoriaSeleccionada) {
-                        productList.add(product)
+
+                    // Filtrar según categoría
+                    if (categoria == "Todos" || product.category.trim().equals(categoria.trim(), ignoreCase = true)) {
+                        products.add(product)
                     }
                 }
                 adapter.notifyDataSetChanged()
             }
-            .addOnFailureListener { exception ->
-                Toast.makeText(requireContext(), "Error al cargar productos: ${exception.message}", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error al cargar productos", Toast.LENGTH_SHORT).show()
             }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
