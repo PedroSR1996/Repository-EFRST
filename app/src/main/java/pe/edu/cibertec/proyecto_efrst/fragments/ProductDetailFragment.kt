@@ -68,6 +68,7 @@ class ProductDetailFragment : Fragment() {
             .addOnSuccessListener { document ->
                 isFavorite = document.exists()
                 updateFavoriteButton()
+                binding.btnAddToFavorites.visibility = View.VISIBLE // ✅ Mostrar después de saber el estado
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error al verificar favorito", Toast.LENGTH_SHORT).show()
