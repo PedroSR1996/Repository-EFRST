@@ -1,6 +1,7 @@
 package pe.edu.cibertec.proyecto_efrst.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,8 @@ import pe.edu.cibertec.proyecto_efrst.models.Product
 class ProductAdapter(
     private val products: MutableList<Product>, // Debe ser mutable para eliminar
     private val onItemClick: (Product) -> Unit,
-    private val onFavoriteToggled: (() -> Unit)? = null // Callback opcional
+    private val onFavoriteToggled: (() -> Unit)? = null, // Callback opcional
+    private val onRemoveClick: ((Product) -> Unit)? = null // Nuevo parámetro
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     private val firestore = FirebaseFirestore.getInstance()
@@ -61,6 +63,15 @@ class ProductAdapter(
 
             binding.root.setOnClickListener {
                 onItemClick(product)
+            }
+            // 👉 Botón eliminar si onRemoveClick está definido
+            if (onRemoveClick != null) {
+                binding.btnRemove.visibility = View.VISIBLE
+                binding.btnRemove.setOnClickListener {
+                    onRemoveClick.invoke(product)
+                }
+            } else {
+                binding.btnRemove.visibility = View.GONE
             }
         }
 
