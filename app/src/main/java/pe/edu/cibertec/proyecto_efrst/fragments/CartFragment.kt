@@ -34,6 +34,10 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Ocultamos total y mensaje vacío inicialmente
+        binding.tvTotal.visibility = View.GONE
+        binding.tvEmptyCart.visibility = View.GONE
+
         adapter = ProductAdapter(
             products = cartItems,
             onItemClick = {}, // No navegamos al detalle desde el carrito
@@ -68,6 +72,7 @@ class CartFragment : Fragment() {
                 }
                 adapter.notifyDataSetChanged()
                 updateTotal()
+                updateEmptyState()
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error al cargar carrito", Toast.LENGTH_SHORT).show()
@@ -79,9 +84,18 @@ class CartFragment : Fragment() {
         binding.tvTotal.text = "Total: S/ %.2f".format(total)
     }
 
+    private fun updateEmptyState() {
+        if (cartItems.isEmpty()) {
+            binding.tvEmptyCart.visibility = View.VISIBLE
+            binding.tvTotal.visibility = View.GONE
+        } else {
+            binding.tvEmptyCart.visibility = View.GONE
+            binding.tvTotal.visibility = View.VISIBLE
+        }
+    }
+
     private fun removeFromCart(product: Product) {
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
-        val db = FirebaseFirestore.getInstance()
+        val userId = auth.currentUser?.uid ?: return
 
         db.collection("users")
             .document(userId)
@@ -91,6 +105,8 @@ class CartFragment : Fragment() {
             .addOnSuccessListener {
                 cartItems.remove(product)
                 adapter.notifyDataSetChanged()
+                updateTotal()
+                updateEmptyState()
                 Toast.makeText(requireContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
