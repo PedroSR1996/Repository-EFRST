@@ -55,6 +55,7 @@ dependencies {
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx")
     implementation("com.google.android.material:material:1.9.0")
+    implementation("com.google.firebase:firebase-database-ktx")
 
     // Navigation Components (usando alias)
     implementation(libs.androidx.navigation.fragment.ktx)

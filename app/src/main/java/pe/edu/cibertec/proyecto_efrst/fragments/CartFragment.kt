@@ -9,16 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import pe.edu.cibertec.proyecto_efrst.adapters.ProductAdapter
+import pe.edu.cibertec.proyecto_efrst.adapters.CartAdapter
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentCartBinding
-import pe.edu.cibertec.proyecto_efrst.models.Product
+import pe.edu.cibertec.proyecto_efrst.models.CartItem
 
 class CartFragment : Fragment() {
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: ProductAdapter
-    private val cartItems = mutableListOf<Product>()
+
+    private lateinit var adapter: CartAdapter
+    private val cartItems = mutableListOf<CartItem>()
 
     private val auth = FirebaseAuth.getInstance()
     private val db = FirebaseFirestore.getInstance()
@@ -34,17 +35,13 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Ocultamos total y mensaje vacío inicialmente
         binding.tvTotal.visibility = View.GONE
         binding.tvEmptyCart.visibility = View.GONE
 
-        adapter = ProductAdapter(
-            products = cartItems,
-            onItemClick = {}, // No navegamos al detalle desde el carrito
-            onFavoriteToggled = null,
-            onRemoveClick = { product ->
-                removeFromCart(product)
-            }
+        adapter = CartAdapter(
+            cartItems = cartItems,
+            onRemoveClick = { item -> removeFromCart(item) },
+            onQuantityChange = { item, newQty -> updateQuantity(item, newQty) }
         )
 
         binding.rvCartItems.layoutManager = LinearLayoutManager(requireContext())
@@ -54,11 +51,7 @@ class CartFragment : Fragment() {
     }
 
     private fun loadCartItems() {
-        val userId = auth.currentUser?.uid
-        if (userId == null) {
-            Toast.makeText(requireContext(), "Debes iniciar sesión", Toast.LENGTH_SHORT).show()
-            return
-        }
+        val userId = auth.currentUser?.uid ?: return
 
         db.collection("users")
             .document(userId)
@@ -67,8 +60,9 @@ class CartFragment : Fragment() {
             .addOnSuccessListener { result ->
                 cartItems.clear()
                 for (document in result) {
-                    val product = document.toObject(Product::class.java)
-                    cartItems.add(product)
+                    val item = document.toObject(CartItem::class.java)
+                    item.id = document.id // ID del documento Firestore
+                    cartItems.add(item)
                 }
                 adapter.notifyDataSetChanged()
                 updateTotal()
@@ -79,8 +73,55 @@ class CartFragment : Fragment() {
             }
     }
 
+    private fun updateQuantity(item: CartItem, newQty: Int) {
+        if (newQty < 1) return  // No permitir cantidad menor a 1
+
+        val userId = auth.currentUser?.uid ?: return
+
+        db.collection("users")
+            .document(userId)
+            .collection("cart")
+            .document(item.id)
+            .update("quantity", newQty)
+            .addOnSuccessListener {
+                // Actualizar la lista local y refrescar el ítem
+                val index = cartItems.indexOfFirst { it.id == item.id }
+                if (index != -1) {
+                    cartItems[index].quantity = newQty
+                    adapter.notifyItemChanged(index)
+                    updateTotal()
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error al actualizar cantidad", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun removeFromCart(item: CartItem) {
+        val userId = auth.currentUser?.uid ?: return
+
+        db.collection("users")
+            .document(userId)
+            .collection("cart")
+            .document(item.id)
+            .delete()
+            .addOnSuccessListener {
+                val index = cartItems.indexOfFirst { it.id == item.id }
+                if (index != -1) {
+                    cartItems.removeAt(index)
+                    adapter.notifyItemRemoved(index)
+                    updateTotal()
+                    updateEmptyState()
+                    Toast.makeText(requireContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error al eliminar del carrito", Toast.LENGTH_SHORT).show()
+            }
+    }
+
     private fun updateTotal() {
-        val total = cartItems.sumOf { it.price }
+        val total = cartItems.sumOf { it.price * it.quantity }
         binding.tvTotal.text = "Total: S/ %.2f".format(total)
     }
 
@@ -92,26 +133,6 @@ class CartFragment : Fragment() {
             binding.tvEmptyCart.visibility = View.GONE
             binding.tvTotal.visibility = View.VISIBLE
         }
-    }
-
-    private fun removeFromCart(product: Product) {
-        val userId = auth.currentUser?.uid ?: return
-
-        db.collection("users")
-            .document(userId)
-            .collection("cart")
-            .document(product.id)
-            .delete()
-            .addOnSuccessListener {
-                cartItems.remove(product)
-                adapter.notifyDataSetChanged()
-                updateTotal()
-                updateEmptyState()
-                Toast.makeText(requireContext(), "Producto eliminado del carrito", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener {
-                Toast.makeText(requireContext(), "Error al eliminar del carrito", Toast.LENGTH_SHORT).show()
-            }
     }
 
     override fun onDestroyView() {

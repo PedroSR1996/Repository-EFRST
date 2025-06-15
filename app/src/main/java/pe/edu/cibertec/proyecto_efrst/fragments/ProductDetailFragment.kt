@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentProductDetailBinding
+import pe.edu.cibertec.proyecto_efrst.models.CartItem
 import pe.edu.cibertec.proyecto_efrst.models.Product
 
 class ProductDetailFragment : Fragment() {
@@ -55,6 +56,12 @@ class ProductDetailFragment : Fragment() {
             toggleFavorite()
         }
 
+        // Desactivar botón si no hay stock
+        if (product.stock <= 0) {
+            binding.btnAddToCart.isEnabled = false
+            binding.btnAddToCart.text = "Sin stock"
+        }
+
         checkIfFavorite()
     }
 
@@ -68,7 +75,7 @@ class ProductDetailFragment : Fragment() {
             .addOnSuccessListener { document ->
                 isFavorite = document.exists()
                 updateFavoriteButton()
-                binding.btnAddToFavorites.visibility = View.VISIBLE // ✅ Mostrar después de saber el estado
+                binding.btnAddToFavorites.visibility = View.VISIBLE
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error al verificar favorito", Toast.LENGTH_SHORT).show()
@@ -88,7 +95,6 @@ class ProductDetailFragment : Fragment() {
             .document(product.id)
 
         if (isFavorite) {
-            // Quitar de favoritos
             favoritesRef.delete()
                 .addOnSuccessListener {
                     isFavorite = false
@@ -99,7 +105,6 @@ class ProductDetailFragment : Fragment() {
                     Toast.makeText(requireContext(), "Error al quitar de favoritos", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            // Agregar a favoritos
             favoritesRef.set(product)
                 .addOnSuccessListener {
                     isFavorite = true
@@ -133,18 +138,58 @@ class ProductDetailFragment : Fragment() {
             return
         }
 
-        db.collection("users")
+        if (product.stock < 1) {
+            Toast.makeText(requireContext(), "No hay stock disponible", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val cartDocRef = db.collection("users")
             .document(userId)
             .collection("cart")
-            .document(product.id)
-            .set(product)
-            .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show()
+            .document(product.id)  // Aquí uso product.id como ID fijo
+
+        cartDocRef.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val currentQuantity = document.getLong("quantity")?.toInt() ?: 1
+                    val newQuantity = currentQuantity + 1
+
+                    if (newQuantity > product.stock) {
+                        Toast.makeText(requireContext(), "No hay suficiente stock", Toast.LENGTH_SHORT).show()
+                        return@addOnSuccessListener
+                    }
+
+                    cartDocRef.update("quantity", newQuantity)
+                        .addOnSuccessListener {
+                            Toast.makeText(requireContext(), "Cantidad actualizada en el carrito", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(requireContext(), "Error al actualizar carrito", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    val cartItem = CartItem(
+                        id = product.id,  // id fijo para el producto
+                        productId = product.id,
+                        name = product.name,
+                        brand = product.brand,
+                        price = product.price,
+                        imageUrl = product.imageUrl,
+                        quantity = 1
+                    )
+                    cartDocRef.set(cartItem)
+                        .addOnSuccessListener {
+                            Toast.makeText(requireContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(requireContext(), "Error al agregar al carrito", Toast.LENGTH_SHORT).show()
+                        }
+                }
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Error al agregar al carrito", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Error al acceder al carrito", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
