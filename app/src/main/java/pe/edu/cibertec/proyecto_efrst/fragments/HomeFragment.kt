@@ -13,6 +13,7 @@ import pe.edu.cibertec.proyecto_efrst.activities.LoginActivity
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentHomeBinding
 import pe.edu.cibertec.proyecto_efrst.firebase.AuthManager
 import pe.edu.cibertec.proyecto_efrst.firebase.FirestoreManager
+import pe.edu.cibertec.proyecto_efrst.firebase.RealtimeDatabaseManager
 import pe.edu.cibertec.proyecto_efrst.models.User
 
 class HomeFragment : Fragment() {
@@ -36,17 +37,18 @@ class HomeFragment : Fragment() {
         loadUser()
 
         binding.btnTodos.setOnClickListener { openProductList("Todos") }
-        binding.btnLaptops.setOnClickListener { openProductList("Laptops") }
-        binding.btnTeclados.setOnClickListener { openProductList("Teclados") }
-        binding.btnMouse.setOnClickListener { openProductList("Mouse") }
-        binding.btnMonitores.setOnClickListener { openProductList("Monitores") }
+        binding.btnPeces.setOnClickListener { openProductList("Comida para peces") }
+        binding.btnIluminacion.setOnClickListener { openProductList("Iluminacion") }
+        binding.btnFiltros.setOnClickListener { openProductList("Filtros") }
+        binding.btnAcuarios.setOnClickListener { openProductList("Acuarios") }
+        binding.btnPlantas.setOnClickListener { openProductList("Plantas") }
 
     }
 
     private fun loadUser() {
         val uid = AuthManager.getCurrentUserId()
         if (uid != null) {
-            FirestoreManager.getUser(uid) { user ->
+            RealtimeDatabaseManager.getUser(uid) { user ->
                 if (user != null) {
                     currentUser = user
                     binding.tvWelcome.text = "Bienvenido, ${user.name}!"

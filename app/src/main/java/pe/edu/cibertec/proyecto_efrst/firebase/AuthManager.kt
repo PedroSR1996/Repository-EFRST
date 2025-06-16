@@ -22,7 +22,8 @@ object AuthManager {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    callback(true, null)
+                    val uid = auth.currentUser?.uid
+                    callback(true, uid)
                 } else {
                     callback(false, task.exception?.message)
                 }

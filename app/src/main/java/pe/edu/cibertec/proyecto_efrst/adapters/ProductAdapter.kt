@@ -1,4 +1,3 @@
-// ProductAdapter.kt
 package pe.edu.cibertec.proyecto_efrst.adapters
 
 import android.view.LayoutInflater

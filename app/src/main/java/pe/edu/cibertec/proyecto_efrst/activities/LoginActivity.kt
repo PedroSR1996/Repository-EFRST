@@ -4,9 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import pe.edu.cibertec.proyecto_efrst.databinding.ActivityLoginBinding
 import pe.edu.cibertec.proyecto_efrst.firebase.AuthManager
+import pe.edu.cibertec.proyecto_efrst.firebase.RealtimeDatabaseManager
 import pe.edu.cibertec.proyecto_efrst.home.MainActivity
+import pe.edu.cibertec.proyecto_efrst.models.User
 import pe.edu.cibertec.proyecto_efrst.utils.Validators
 
 class LoginActivity : AppCompatActivity() {
@@ -41,13 +44,49 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUser(email: String, password: String) {
-        AuthManager.login(email, password) { isSuccess, errorMsg ->
-            if (isSuccess) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+        AuthManager.login(email, password) { isSuccess, uid ->
+            if (isSuccess && uid != null) {
+                // Obtener el usuario actual de FirebaseAuth para datos extra
+                val firebaseUser = FirebaseAuth.getInstance().currentUser
+                if (firebaseUser != null) {
+                    checkOrCreateUserInDatabase(uid, firebaseUser.email ?: "", firebaseUser.displayName ?: "Usuario")
+                } else {
+                    // Por si acaso no está logueado aunque dio éxito (poco probable)
+                    checkOrCreateUserInDatabase(uid, "", "Usuario")
+                }
             } else {
-                Toast.makeText(this, errorMsg ?: "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error al iniciar sesión. Verifica email y contraseña.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun checkOrCreateUserInDatabase(uid: String, email: String, name: String) {
+        RealtimeDatabaseManager.getUser(uid) { user ->
+            if (user != null) {
+                goToHome()
+            } else {
+                val newUser = User(
+                    id = uid,
+                    name = name,
+                    email = email,
+                    phone = "",
+                    address = "",
+                    birthDate = ""
+                )
+                RealtimeDatabaseManager.saveUser(newUser) { saved ->
+                    if (saved) {
+                        goToHome()
+                    } else {
+                        Toast.makeText(this, "Error al guardar usuario", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun goToHome() {
+        Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

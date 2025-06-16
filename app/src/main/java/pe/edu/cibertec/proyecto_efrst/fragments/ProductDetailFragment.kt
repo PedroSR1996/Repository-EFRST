@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.*
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentProductDetailBinding
 import pe.edu.cibertec.proyecto_efrst.models.CartItem
 import pe.edu.cibertec.proyecto_efrst.models.Product
@@ -18,9 +18,11 @@ class ProductDetailFragment : Fragment() {
 
     private var _binding: FragmentProductDetailBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var product: Product
-    private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
+    private val db = FirebaseDatabase.getInstance().reference
+
     private var isFavorite = false
 
     override fun onCreateView(
@@ -67,19 +69,20 @@ class ProductDetailFragment : Fragment() {
 
     private fun checkIfFavorite() {
         val userId = auth.currentUser?.uid ?: return
-        db.collection("users")
-            .document(userId)
-            .collection("favorites")
-            .document(product.id)
-            .get()
-            .addOnSuccessListener { document ->
-                isFavorite = document.exists()
+
+        val favRef = db.child("users").child(userId).child("favorites").child(product.id)
+
+        favRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                isFavorite = snapshot.exists()
                 updateFavoriteButton()
                 binding.btnAddToFavorites.visibility = View.VISIBLE
             }
-            .addOnFailureListener {
+
+            override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(requireContext(), "Error al verificar favorito", Toast.LENGTH_SHORT).show()
             }
+        })
     }
 
     private fun toggleFavorite() {
@@ -89,13 +92,10 @@ class ProductDetailFragment : Fragment() {
             return
         }
 
-        val favoritesRef = db.collection("users")
-            .document(userId)
-            .collection("favorites")
-            .document(product.id)
+        val favRef = db.child("users").child(userId).child("favorites").child(product.id)
 
         if (isFavorite) {
-            favoritesRef.delete()
+            favRef.removeValue()
                 .addOnSuccessListener {
                     isFavorite = false
                     updateFavoriteButton()
@@ -105,7 +105,7 @@ class ProductDetailFragment : Fragment() {
                     Toast.makeText(requireContext(), "Error al quitar de favoritos", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            favoritesRef.set(product)
+            favRef.setValue(product)
                 .addOnSuccessListener {
                     isFavorite = true
                     updateFavoriteButton()
@@ -143,23 +143,20 @@ class ProductDetailFragment : Fragment() {
             return
         }
 
-        val cartDocRef = db.collection("users")
-            .document(userId)
-            .collection("cart")
-            .document(product.id)  // Aquí uso product.id como ID fijo
+        val cartRef = db.child("users").child(userId).child("cart").child(product.id)
 
-        cartDocRef.get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val currentQuantity = document.getLong("quantity")?.toInt() ?: 1
+        cartRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val currentQuantity = snapshot.child("quantity").getValue(Int::class.java) ?: 1
                     val newQuantity = currentQuantity + 1
 
                     if (newQuantity > product.stock) {
                         Toast.makeText(requireContext(), "No hay suficiente stock", Toast.LENGTH_SHORT).show()
-                        return@addOnSuccessListener
+                        return
                     }
 
-                    cartDocRef.update("quantity", newQuantity)
+                    cartRef.child("quantity").setValue(newQuantity)
                         .addOnSuccessListener {
                             Toast.makeText(requireContext(), "Cantidad actualizada en el carrito", Toast.LENGTH_SHORT).show()
                         }
@@ -168,7 +165,7 @@ class ProductDetailFragment : Fragment() {
                         }
                 } else {
                     val cartItem = CartItem(
-                        id = product.id,  // id fijo para el producto
+                        id = product.id,
                         productId = product.id,
                         name = product.name,
                         brand = product.brand,
@@ -176,7 +173,7 @@ class ProductDetailFragment : Fragment() {
                         imageUrl = product.imageUrl,
                         quantity = 1
                     )
-                    cartDocRef.set(cartItem)
+                    cartRef.setValue(cartItem)
                         .addOnSuccessListener {
                             Toast.makeText(requireContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show()
                         }
@@ -185,11 +182,12 @@ class ProductDetailFragment : Fragment() {
                         }
                 }
             }
-            .addOnFailureListener {
+
+            override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(requireContext(), "Error al acceder al carrito", Toast.LENGTH_SHORT).show()
             }
+        })
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

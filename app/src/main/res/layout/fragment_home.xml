@@ -10,53 +10,60 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:padding="24dp">
 
             <TextView
                 android:id="@+id/tvWelcome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
                 android:text="Bienvenido"
-                android:textSize="20sp"
-                android:layout_marginBottom="24dp" />
+                android:textSize="20sp" />
 
             <!-- Botones por categoría -->
             <Button
                 android:id="@+id/btnTodos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ver todo"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:text="Ver todo" />
 
             <Button
-                android:id="@+id/btnLaptops"
+                android:id="@+id/btnPeces"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Laptops"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:text="Comida para peces" />
 
             <Button
-                android:id="@+id/btnTeclados"
+                android:id="@+id/btnIluminacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Teclados"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:text="Iluminacion" />
 
             <Button
-                android:id="@+id/btnMouse"
+                android:id="@+id/btnFiltros"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mouse"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:text="Filtros" />
 
             <Button
-                android:id="@+id/btnMonitores"
+                android:id="@+id/btnAcuarios"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Monitores"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="8dp"
+                android:text="Acuarios" />
+
+            <Button
+                android:id="@+id/btnPlantas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Plantas" />
 
         </LinearLayout>
     </ScrollView>

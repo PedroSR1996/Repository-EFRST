@@ -9,39 +9,43 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.*
 import pe.edu.cibertec.proyecto_efrst.adapters.ProductAdapter
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentFavoritesBinding
-import pe.edu.cibertec.proyecto_efrst.fragments.FavoritesFragmentDirections
 import pe.edu.cibertec.proyecto_efrst.models.Product
 
 class FavoritesFragment : Fragment() {
 
-    private lateinit var binding: FragmentFavoritesBinding
-    private val firestore = FirebaseFirestore.getInstance()
+    private var _binding: FragmentFavoritesBinding? = null
+    private val binding get() = _binding!!
+
+    private val dbRef = FirebaseDatabase.getInstance().reference
     private val userId = FirebaseAuth.getInstance().currentUser?.uid.orEmpty()
     private val favorites = mutableListOf<Product>()
     private lateinit var adapter: ProductAdapter
+
+    private var favoritesListener: ValueEventListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ProductAdapter(favorites,
+        adapter = ProductAdapter(
+            favorites,
             onItemClick = { product ->
                 val action = FavoritesFragmentDirections
                     .actionFavoritesFragmentToProductDetailFragment(product)
                 findNavController().navigate(action)
             },
             onFavoriteToggled = {
-                loadFavorites() // 🔁 Recarga la lista
+                loadFavorites()
             }
         )
 
@@ -51,33 +55,37 @@ class FavoritesFragment : Fragment() {
         loadFavorites()
     }
 
-
-    override fun onResume() {
-        super.onResume()
-        // Cargar favoritos al volver a este fragmento
-        loadFavorites()
-    }
-
     private fun loadFavorites() {
-        firestore.collection("users")
-            .document(userId)
-            .collection("favorites")
-            .get()
-            .addOnSuccessListener { result ->
+        val favRef = dbRef.child("users").child(userId).child("favorites")
+
+        // Remover listener previo si existe
+        favoritesListener?.let { favRef.removeEventListener(it) }
+
+        favoritesListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
                 favorites.clear()
-                for (document in result) {
-                    val product = document.toObject(Product::class.java)
-                    favorites.add(product)
+                for (child in snapshot.children) {
+                    val product = child.getValue(Product::class.java)
+                    product?.let { favorites.add(it) }
                 }
                 adapter.notifyDataSetChanged()
 
-                // Mostrar/ocultar mensaje de lista vacía
                 binding.tvEmptyFavorites.visibility =
                     if (favorites.isEmpty()) View.VISIBLE else View.GONE
             }
-            .addOnFailureListener {
+
+            override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(requireContext(), "Error al cargar favoritos", Toast.LENGTH_SHORT).show()
             }
+        }
+        favRef.addValueEventListener(favoritesListener as ValueEventListener)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Remover listener para evitar fugas de memoria
+        val favRef = dbRef.child("users").child(userId).child("favorites")
+        favoritesListener?.let { favRef.removeEventListener(it) }
+        _binding = null
+    }
 }

@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.*
 import pe.edu.cibertec.proyecto_efrst.adapters.CartAdapter
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentCartBinding
 import pe.edu.cibertec.proyecto_efrst.models.CartItem
@@ -22,7 +22,9 @@ class CartFragment : Fragment() {
     private val cartItems = mutableListOf<CartItem>()
 
     private val auth = FirebaseAuth.getInstance()
-    private val db = FirebaseFirestore.getInstance()
+    private val dbRef = FirebaseDatabase.getInstance().reference
+
+    private var cartListener: ValueEventListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,24 +55,32 @@ class CartFragment : Fragment() {
     private fun loadCartItems() {
         val userId = auth.currentUser?.uid ?: return
 
-        db.collection("users")
-            .document(userId)
-            .collection("cart")
-            .get()
-            .addOnSuccessListener { result ->
+        val cartRef = dbRef.child("users").child(userId).child("cart")
+
+        // Removemos listener anterior para evitar múltiples escuchas
+        cartListener?.let { cartRef.removeEventListener(it) }
+
+        cartListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
                 cartItems.clear()
-                for (document in result) {
-                    val item = document.toObject(CartItem::class.java)
-                    item.id = document.id // ID del documento Firestore
-                    cartItems.add(item)
+                for (child in snapshot.children) {
+                    val item = child.getValue(CartItem::class.java)
+                    if (item != null) {
+                        item.id = child.key ?: ""  // asignar id como clave del nodo
+                        cartItems.add(item)
+                    }
                 }
                 adapter.notifyDataSetChanged()
                 updateTotal()
                 updateEmptyState()
             }
-            .addOnFailureListener {
+
+            override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(requireContext(), "Error al cargar carrito", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        cartRef.addValueEventListener(cartListener as ValueEventListener)
     }
 
     private fun updateQuantity(item: CartItem, newQty: Int) {
@@ -78,13 +88,10 @@ class CartFragment : Fragment() {
 
         val userId = auth.currentUser?.uid ?: return
 
-        db.collection("users")
-            .document(userId)
-            .collection("cart")
-            .document(item.id)
-            .update("quantity", newQty)
+        val itemRef = dbRef.child("users").child(userId).child("cart").child(item.id)
+        itemRef.child("quantity").setValue(newQty)
             .addOnSuccessListener {
-                // Actualizar la lista local y refrescar el ítem
+                // Actualizamos localmente y refrescamos
                 val index = cartItems.indexOfFirst { it.id == item.id }
                 if (index != -1) {
                     cartItems[index].quantity = newQty
@@ -100,11 +107,8 @@ class CartFragment : Fragment() {
     private fun removeFromCart(item: CartItem) {
         val userId = auth.currentUser?.uid ?: return
 
-        db.collection("users")
-            .document(userId)
-            .collection("cart")
-            .document(item.id)
-            .delete()
+        val itemRef = dbRef.child("users").child(userId).child("cart").child(item.id)
+        itemRef.removeValue()
             .addOnSuccessListener {
                 val index = cartItems.indexOfFirst { it.id == item.id }
                 if (index != -1) {
@@ -137,6 +141,11 @@ class CartFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // Remover listener para evitar fugas
+        val userId = auth.currentUser?.uid
+        if (userId != null && cartListener != null) {
+            dbRef.child("users").child(userId).child("cart").removeEventListener(cartListener as ValueEventListener)
+        }
         _binding = null
     }
 }

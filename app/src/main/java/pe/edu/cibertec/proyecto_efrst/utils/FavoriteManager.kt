@@ -1,31 +1,47 @@
 package pe.edu.cibertec.proyecto_efrst.utils
 
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.FirebaseDatabase
 import pe.edu.cibertec.proyecto_efrst.models.Product
 
 object FavoriteManager {
-    private val firestore = FirebaseFirestore.getInstance()
-    private val userId = FirebaseAuth.getInstance().currentUser?.uid.orEmpty()
+
+    private val dbRef = FirebaseDatabase.getInstance().reference
+    private val userId get() = FirebaseAuth.getInstance().currentUser?.uid.orEmpty()
 
     fun isFavorite(productId: String, callback: (Boolean) -> Unit) {
-        firestore.collection("users").document(userId)
-            .collection("favorites").document(productId)
+        if (userId.isEmpty()) {
+            callback(false)
+            return
+        }
+
+        dbRef.child("users").child(userId).child("favorites").child(productId)
             .get()
             .addOnSuccessListener { snapshot ->
                 callback(snapshot.exists())
             }
+            .addOnFailureListener {
+                callback(false)
+            }
     }
 
     fun toggleFavorite(product: Product, onToggled: (Boolean) -> Unit) {
-        val favRef = firestore.collection("users").document(userId)
-            .collection("favorites").document(product.id)
+        if (userId.isEmpty()) {
+            onToggled(false)
+            return
+        }
+
+        val favRef = dbRef.child("users").child(userId).child("favorites").child(product.id)
 
         favRef.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
-                favRef.delete().addOnSuccessListener { onToggled(false) }
+                favRef.removeValue()
+                    .addOnSuccessListener { onToggled(false) }
+                    .addOnFailureListener { onToggled(true) }
             } else {
-                favRef.set(product).addOnSuccessListener { onToggled(true) }
+                favRef.setValue(product)
+                    .addOnSuccessListener { onToggled(true) }
+                    .addOnFailureListener { onToggled(false) }
             }
         }
     }

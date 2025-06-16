@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import pe.edu.cibertec.proyecto_efrst.databinding.ActivityRegisterBinding
 import pe.edu.cibertec.proyecto_efrst.firebase.AuthManager
-import pe.edu.cibertec.proyecto_efrst.firebase.FirestoreManager
+import pe.edu.cibertec.proyecto_efrst.firebase.RealtimeDatabaseManager
 import pe.edu.cibertec.proyecto_efrst.models.User
 import pe.edu.cibertec.proyecto_efrst.utils.Validators
 import pe.edu.cibertec.proyecto_efrst.home.MainActivity
@@ -46,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString().trim()
             val phone = binding.etPhone.text.toString().trim()
             val address = binding.etAddress.text.toString().trim()
-            val birthDate = binding.etBirthDate.text.toString().trim() // dd/MM/yyyy
+            val birthDate = binding.etBirthDate.text.toString().trim()
 
             // Validaciones
             if (name.isEmpty() || phone.isEmpty() || address.isEmpty() || birthDate.isEmpty()) {
@@ -86,7 +86,8 @@ class RegisterActivity : AppCompatActivity() {
                     address = address,
                     birthDate = birthDate
                 )
-                FirestoreManager.saveUser(user) { saved ->
+                // ✅ Guardar en Realtime Database
+                RealtimeDatabaseManager.saveUser(user) { saved ->
                     if (saved) {
                         Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, MainActivity::class.java))
