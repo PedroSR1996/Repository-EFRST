@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detailScrollView"
     android:layout_width="match_parent"
@@ -16,7 +17,7 @@
         <ImageView
             android:id="@+id/imgProductDetail"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="400dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:contentDescription="@string/product_image"
@@ -65,7 +66,7 @@
             android:textSize="16sp"
             android:layout_marginTop="8dp" />
 
-        <!-- BOTONES -->
+        <!-- BOTONES CON ÍCONOS -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,25 +75,31 @@
             android:gravity="center"
             android:weightSum="2">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddToCart"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Agregar al carrito"
-                android:backgroundTint="@color/black"
                 android:textColor="@android:color/white"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/black"
+                app:icon="@drawable/ic_add_carrito"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddToFavorites"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Agregar a favoritos"
-                android:backgroundTint="@android:color/holo_red_dark"
                 android:textColor="@android:color/white"
-                android:layout_marginStart="8dp" />
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@android:color/holo_red_dark"
+                app:icon="@drawable/ic_favorite_filled"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp" />
         </LinearLayout>
 
     </LinearLayout>

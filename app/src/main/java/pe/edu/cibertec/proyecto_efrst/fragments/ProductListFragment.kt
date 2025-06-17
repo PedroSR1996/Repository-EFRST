@@ -38,13 +38,25 @@ class ProductListFragment : Fragment() {
             ProductListFragmentArgs.fromBundle(it).categoria
         } ?: "Todos"
 
-        adapter = ProductAdapter(products,
+        // Mostrar título según categoría
+        binding.tvCategoryTitle.text = when (categoria) {
+            "Todos" -> "Todos los productos"
+            "Comida para peces" -> "Comida para Peces"
+            "Iluminacion" -> "Iluminación"
+            "Filtros" -> "Filtros para Acuarios"
+            "Acuarios" -> "Acuarios de Vidrio"
+            "Plantas" -> "Plantas Acuáticas"
+            else -> categoria
+        }
+
+        adapter = ProductAdapter(
+            products,
             onItemClick = { product ->
                 val action = ProductListFragmentDirections
                     .actionProductListFragmentToProductDetailFragment(product)
                 findNavController().navigate(action)
             },
-            onFavoriteToggled = null // Si usas favoritos, adapta según necesidad
+            onFavoriteToggled = null // O actualiza si usas favoritos
         )
 
         binding.recyclerViewProducts.layoutManager = LinearLayoutManager(requireContext())
@@ -54,14 +66,12 @@ class ProductListFragment : Fragment() {
     }
 
     private fun loadProducts() {
-        // Obtener todos los productos desde Realtime Database en nodo "products"
         db.child("products").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 products.clear()
                 for (productSnapshot in snapshot.children) {
                     val product = productSnapshot.getValue(Product::class.java)
                     product?.let {
-                        // Filtrar por categoría si aplica
                         if (categoria == "Todos" || it.category.trim().equals(categoria.trim(), ignoreCase = true)) {
                             products.add(it)
                         }
