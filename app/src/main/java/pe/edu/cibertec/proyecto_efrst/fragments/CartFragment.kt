@@ -143,9 +143,7 @@ class CartFragment : Fragment() {
             return
         }
 
-        // Convertir lista a mapa
         val itemsMap = cartItems.associateBy { it.productId }
-
         val orderId = dbRef.child("orders").child(userId).push().key ?: return
         val orderTotal = cartItems.sumOf { it.price * it.quantity }
         val orderDate = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault()).format(java.util.Date())
@@ -157,10 +155,43 @@ class CartFragment : Fragment() {
             "items" to itemsMap
         )
 
-        // Guardar en "orders"
         dbRef.child("orders").child(userId).child(orderId).setValue(order)
             .addOnSuccessListener {
-                // Limpiar carrito
+                // 🔻 Descontar stock de cada producto
+                val productsRef = dbRef.child("products")
+
+                for ((_, item) in itemsMap) {
+                    productsRef.orderByChild("id").equalTo(item.productId)
+                        .addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                for (productSnap in snapshot.children) {
+                                    val stockRef = productSnap.ref.child("stock")
+                                    stockRef.runTransaction(object : Transaction.Handler {
+                                        override fun doTransaction(currentData: MutableData): Transaction.Result {
+                                            val currentStock = currentData.getValue(Int::class.java) ?: return Transaction.success(currentData)
+                                            if (currentStock >= item.quantity) {
+                                                currentData.value = currentStock - item.quantity
+                                            }
+                                            return Transaction.success(currentData)
+                                        }
+
+                                        override fun onComplete(error: DatabaseError?, committed: Boolean, currentData: DataSnapshot?) {
+                                            if (error != null) {
+                                                println("❌ Error actualizando stock: ${error.message}")
+                                            }
+                                        }
+                                    })
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                println("❌ Error buscando producto por id: ${error.message}")
+                            }
+                        })
+                }
+
+
+                // 🔻 Limpiar carrito
                 cartRef.removeValue()
                 Toast.makeText(requireContext(), "Pedido registrado correctamente", Toast.LENGTH_LONG).show()
                 cartItems.clear()
@@ -172,7 +203,6 @@ class CartFragment : Fragment() {
                 Toast.makeText(requireContext(), "Error al registrar pedido", Toast.LENGTH_SHORT).show()
             }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
