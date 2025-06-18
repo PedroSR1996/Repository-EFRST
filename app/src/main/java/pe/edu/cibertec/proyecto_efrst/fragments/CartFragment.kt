@@ -37,9 +37,6 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.tvTotal.visibility = View.GONE
-        binding.tvEmptyCart.visibility = View.GONE
-
         adapter = CartAdapter(
             cartItems = cartItems,
             onRemoveClick = { item -> removeFromCart(item) },
@@ -49,15 +46,17 @@ class CartFragment : Fragment() {
         binding.rvCartItems.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCartItems.adapter = adapter
 
+        binding.btnCheckout.setOnClickListener {
+            simulatePayment()
+        }
+
         loadCartItems()
     }
 
     private fun loadCartItems() {
         val userId = auth.currentUser?.uid ?: return
-
         val cartRef = dbRef.child("users").child(userId).child("cart")
 
-        // Removemos listener anterior para evitar múltiples escuchas
         cartListener?.let { cartRef.removeEventListener(it) }
 
         cartListener = object : ValueEventListener {
@@ -66,7 +65,7 @@ class CartFragment : Fragment() {
                 for (child in snapshot.children) {
                     val item = child.getValue(CartItem::class.java)
                     if (item != null) {
-                        item.id = child.key ?: ""  // asignar id como clave del nodo
+                        item.id = child.key ?: ""
                         cartItems.add(item)
                     }
                 }
@@ -84,14 +83,13 @@ class CartFragment : Fragment() {
     }
 
     private fun updateQuantity(item: CartItem, newQty: Int) {
-        if (newQty < 1) return  // No permitir cantidad menor a 1
+        if (newQty < 1) return
 
         val userId = auth.currentUser?.uid ?: return
-
         val itemRef = dbRef.child("users").child(userId).child("cart").child(item.id)
+
         itemRef.child("quantity").setValue(newQty)
             .addOnSuccessListener {
-                // Actualizamos localmente y refrescamos
                 val index = cartItems.indexOfFirst { it.id == item.id }
                 if (index != -1) {
                     cartItems[index].quantity = newQty
@@ -106,8 +104,8 @@ class CartFragment : Fragment() {
 
     private fun removeFromCart(item: CartItem) {
         val userId = auth.currentUser?.uid ?: return
-
         val itemRef = dbRef.child("users").child(userId).child("cart").child(item.id)
+
         itemRef.removeValue()
             .addOnSuccessListener {
                 val index = cartItems.indexOfFirst { it.id == item.id }
@@ -130,21 +128,58 @@ class CartFragment : Fragment() {
     }
 
     private fun updateEmptyState() {
-        if (cartItems.isEmpty()) {
-            binding.tvEmptyCart.visibility = View.VISIBLE
-            binding.tvTotal.visibility = View.GONE
-        } else {
-            binding.tvEmptyCart.visibility = View.GONE
-            binding.tvTotal.visibility = View.VISIBLE
-        }
+        val isEmpty = cartItems.isEmpty()
+        binding.tvEmptyCart.visibility = if (isEmpty) View.VISIBLE else View.GONE
+        binding.tvTotal.visibility = if (isEmpty) View.GONE else View.VISIBLE
+        binding.btnCheckout.visibility = if (isEmpty) View.GONE else View.VISIBLE
     }
+
+    private fun simulatePayment() {
+        val userId = auth.currentUser?.uid ?: return
+        val cartRef = dbRef.child("users").child(userId).child("cart")
+
+        if (cartItems.isEmpty()) {
+            Toast.makeText(requireContext(), "No hay productos para pagar", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Convertir lista a mapa
+        val itemsMap = cartItems.associateBy { it.productId }
+
+        val orderId = dbRef.child("orders").child(userId).push().key ?: return
+        val orderTotal = cartItems.sumOf { it.price * it.quantity }
+        val orderDate = java.text.SimpleDateFormat("dd/MM/yyyy HH:mm", java.util.Locale.getDefault()).format(java.util.Date())
+
+        val order = mapOf(
+            "id" to orderId,
+            "date" to orderDate,
+            "total" to orderTotal,
+            "items" to itemsMap
+        )
+
+        // Guardar en "orders"
+        dbRef.child("orders").child(userId).child(orderId).setValue(order)
+            .addOnSuccessListener {
+                // Limpiar carrito
+                cartRef.removeValue()
+                Toast.makeText(requireContext(), "Pedido registrado correctamente", Toast.LENGTH_LONG).show()
+                cartItems.clear()
+                adapter.notifyDataSetChanged()
+                updateEmptyState()
+                updateTotal()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error al registrar pedido", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Remover listener para evitar fugas
         val userId = auth.currentUser?.uid
         if (userId != null && cartListener != null) {
-            dbRef.child("users").child(userId).child("cart").removeEventListener(cartListener as ValueEventListener)
+            dbRef.child("users").child(userId).child("cart")
+                .removeEventListener(cartListener as ValueEventListener)
         }
         _binding = null
     }

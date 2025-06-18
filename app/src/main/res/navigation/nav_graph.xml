@@ -21,13 +21,10 @@
         android:id="@+id/productListFragment"
         android:name="pe.edu.cibertec.proyecto_efrst.fragments.ProductListFragment"
         android:label="Lista de productos" >
-
         <argument
             android:name="categoria"
             app:argType="string"
             android:defaultValue="Todos" />
-
-        <!-- 🔽 Agrega esta acción -->
         <action
             android:id="@+id/action_productListFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
@@ -42,12 +39,10 @@
             app:argType="pe.edu.cibertec.proyecto_efrst.models.Product" />
     </fragment>
 
-
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="pe.edu.cibertec.proyecto_efrst.fragments.FavoritesFragment"
         android:label="Favoritos" >
-
         <action
             android:id="@+id/action_favoritesFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
@@ -61,5 +56,28 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="pe.edu.cibertec.proyecto_efrst.fragments.ProfileFragment"
-        android:label="Perfil" />
+        android:label="Perfil" >
+        <action
+            android:id="@+id/action_profileFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="pe.edu.cibertec.proyecto_efrst.fragments.OrdersFragment"
+        android:label="Órdenes" >
+        <!-- ✅ Nueva acción agregada -->
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="pe.edu.cibertec.proyecto_efrst.fragments.OrderDetailFragment"
+        android:label="Detalle del pedido">
+        <argument
+            android:name="order"
+            app:argType="pe.edu.cibertec.proyecto_efrst.models.Order" />
+    </fragment>
 </navigation>

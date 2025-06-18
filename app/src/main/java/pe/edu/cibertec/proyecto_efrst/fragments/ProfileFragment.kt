@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import pe.edu.cibertec.proyecto_efrst.R
 import pe.edu.cibertec.proyecto_efrst.activities.LoginActivity
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentProfileBinding
-import pe.edu.cibertec.proyecto_efrst.firebase.RealtimeDatabaseManager
 import pe.edu.cibertec.proyecto_efrst.models.User
 
 class ProfileFragment : Fragment() {
@@ -37,6 +38,11 @@ class ProfileFragment : Fragment() {
             val intent = Intent(requireContext(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+        }
+
+        // 👉 Acción para ver órdenes
+        binding.btnVerOrdenes.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_ordersFragment)
         }
     }
 

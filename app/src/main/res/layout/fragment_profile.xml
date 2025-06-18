@@ -52,6 +52,13 @@
                 android:layout_height="wrap_content"
                 android:text="Fecha de nacimiento:"
                 android:layout_marginBottom="24dp"/>
+
+            <Button
+                android:id="@+id/btnVerOrdenes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver mis órdenes"
+                android:layout_marginBottom="16dp"/>
         </LinearLayout>
     </ScrollView>
 
