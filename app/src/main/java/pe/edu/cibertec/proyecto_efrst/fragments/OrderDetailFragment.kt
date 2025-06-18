@@ -40,8 +40,7 @@ class OrderDetailFragment : Fragment() {
 
         adapter = CartAdapter(
             cartItems = items,
-            onRemoveClick = {},       // No se pueden eliminar en vista detalle
-            onQuantityChange = { _, _ -> } // No se modifica cantidad en vista detalle
+            readOnly = true
         )
 
         binding.rvOrderItems.layoutManager = LinearLayoutManager(requireContext())
