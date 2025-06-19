@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:text="No tienes órdenes registradas"
         android:visibility="gone"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvOrders"

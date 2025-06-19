@@ -3,6 +3,7 @@ package pe.edu.cibertec.proyecto_efrst.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pe.edu.cibertec.proyecto_efrst.databinding.ItemCartProductBinding
@@ -37,7 +38,11 @@ class CartAdapter(
             } else {
                 binding.btnIncrease.setOnClickListener {
                     val newQty = item.quantity + 1
-                    onQuantityChange?.invoke(item, newQty)
+                    if (newQty <= item.stock) {
+                        onQuantityChange?.invoke(item, newQty)
+                    } else {
+                        Toast.makeText(binding.root.context, "Stock insuficiente", Toast.LENGTH_SHORT).show()
+                    }
                 }
 
                 binding.btnDecrease.setOnClickListener {

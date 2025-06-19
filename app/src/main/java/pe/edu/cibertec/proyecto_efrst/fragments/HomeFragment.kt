@@ -88,6 +88,7 @@ class HomeFragment : Fragment() {
 
     private fun setupCarousel() {
         val images = listOf(
+            "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2Fbanner_00.jpg?alt=media&token=92655643-dea1-42f6-82db-bd2d9f9431a2",
             "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2Fbanner_01.jpg?alt=media&token=5ef14627-0238-4831-b093-9f3bf6c72814",
             "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2Fbanner_02.jpg?alt=media&token=d4cce55b-5f2e-455e-b52d-e099805022a4",
             "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2Fbanner_03.jpg?alt=media&token=799767b9-c9a5-432a-a277-61b8fdea837c"
@@ -101,7 +102,7 @@ class HomeFragment : Fragment() {
         binding.imageCarousel.setCurrentItem(startPosition, false)
 
         // Auto slide
-        handler.postDelayed(slideRunnable, 5000)
+        handler.postDelayed(slideRunnable, 2000)
 
         // Reiniciar auto slide cuando el usuario cambia manualmente
         binding.imageCarousel.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import pe.edu.cibertec.proyecto_efrst.R
 import pe.edu.cibertec.proyecto_efrst.databinding.FragmentProductDetailBinding
 import pe.edu.cibertec.proyecto_efrst.models.CartItem
 import pe.edu.cibertec.proyecto_efrst.models.Product
@@ -60,10 +61,14 @@ class ProductDetailFragment : Fragment() {
 
         // Desactivar botón si no hay stock
         if (product.stock <= 0) {
-            binding.btnAddToCart.isEnabled = false
             binding.btnAddToCart.text = "Sin stock"
-        }
+            binding.btnAddToCart.setIconResource(R.drawable.ic_sin_stock)
+            binding.btnAddToCart.iconTint = ContextCompat.getColorStateList(requireContext(), android.R.color.white)
 
+            binding.btnAddToCart.setOnClickListener {
+                Toast.makeText(requireContext(), "Producto sin stock disponible", Toast.LENGTH_SHORT).show()
+            }
+        }
         checkIfFavorite()
     }
 
@@ -171,7 +176,8 @@ class ProductDetailFragment : Fragment() {
                         brand = product.brand,
                         price = product.price,
                         imageUrl = product.imageUrl,
-                        quantity = 1
+                        quantity = 1,
+                        stock = product.stock
                     )
                     cartRef.setValue(cartItem)
                         .addOnSuccessListener {
