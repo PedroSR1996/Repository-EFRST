@@ -131,7 +131,7 @@ class ProductDetailFragment : Fragment() {
         } else {
             binding.btnAddToFavorites.text = "Agregar a favoritos"
             binding.btnAddToFavorites.setBackgroundTintList(
-                ContextCompat.getColorStateList(requireContext(), android.R.color.holo_red_dark)
+                ContextCompat.getColorStateList(requireContext(), R.color.app_naranja)
             )
         }
     }

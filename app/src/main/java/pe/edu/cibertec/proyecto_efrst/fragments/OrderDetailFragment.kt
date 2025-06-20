@@ -37,6 +37,8 @@ class OrderDetailFragment : Fragment() {
         binding.tvOrderTotal.text = "Total: S/ %.2f".format(order.total)
 
         items.addAll(order.items.values)
+        val totalQuantity = items.sumOf { it.quantity }
+        binding.tvOrderItemCount.text = "Total de productos: $totalQuantity"
 
         adapter = CartAdapter(
             cartItems = items,

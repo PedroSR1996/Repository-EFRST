@@ -1,5 +1,6 @@
 package pe.edu.cibertec.proyecto_efrst.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +48,14 @@ class CartFragment : Fragment() {
         binding.rvCartItems.adapter = adapter
 
         binding.btnCheckout.setOnClickListener {
-            simulatePayment()
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirmar pago")
+                .setMessage("¿Estás seguro de realizar el pago?")
+                .setPositiveButton("Sí") { _, _ ->
+                    simulatePaymentWithSuccessDialog()
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
         }
 
         loadCartItems()
@@ -134,7 +142,7 @@ class CartFragment : Fragment() {
         binding.btnCheckout.visibility = if (isEmpty) View.GONE else View.VISIBLE
     }
 
-    private fun simulatePayment() {
+    private fun simulatePaymentWithSuccessDialog() {
         val userId = auth.currentUser?.uid ?: return
         val cartRef = dbRef.child("users").child(userId).child("cart")
 
@@ -157,9 +165,8 @@ class CartFragment : Fragment() {
 
         dbRef.child("orders").child(userId).child(orderId).setValue(order)
             .addOnSuccessListener {
-                // 🔻 Descontar stock de cada producto
+                // Actualiza stock
                 val productsRef = dbRef.child("products")
-
                 for ((_, item) in itemsMap) {
                     productsRef.orderByChild("id").equalTo(item.productId)
                         .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -175,34 +182,34 @@ class CartFragment : Fragment() {
                                             return Transaction.success(currentData)
                                         }
 
-                                        override fun onComplete(error: DatabaseError?, committed: Boolean, currentData: DataSnapshot?) {
-                                            if (error != null) {
-                                                println("❌ Error actualizando stock: ${error.message}")
-                                            }
-                                        }
+                                        override fun onComplete(error: DatabaseError?, committed: Boolean, currentData: DataSnapshot?) {}
                                     })
                                 }
                             }
 
-                            override fun onCancelled(error: DatabaseError) {
-                                println("❌ Error buscando producto por id: ${error.message}")
-                            }
+                            override fun onCancelled(error: DatabaseError) {}
                         })
                 }
 
-
-                // 🔻 Limpiar carrito
+                // Limpiar carrito
                 cartRef.removeValue()
-                Toast.makeText(requireContext(), "Pedido registrado correctamente", Toast.LENGTH_LONG).show()
                 cartItems.clear()
                 adapter.notifyDataSetChanged()
                 updateEmptyState()
                 updateTotal()
+
+                // Mostrar diálogo de éxito
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Pago realizado")
+                    .setMessage("¡Tu compra se ha realizado con éxito!")
+                    .setPositiveButton("OK", null)
+                    .show()
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Error al registrar pedido", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -83,7 +83,7 @@
                 android:text="Agregar al carrito"
                 android:textColor="@android:color/white"
                 android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/app_morado"
                 app:icon="@drawable/ic_add_carrito"
                 app:iconGravity="textStart"
                 app:iconPadding="8dp" />
@@ -96,7 +96,7 @@
                 android:text="Agregar a favoritos"
                 android:textColor="@android:color/white"
                 android:layout_marginStart="8dp"
-                android:backgroundTint="@android:color/holo_red_dark"
+                android:backgroundTint="@color/app_naranja"
                 app:icon="@drawable/ic_favorite_filled"
                 app:iconGravity="textStart"
                 app:iconPadding="8dp" />
