@@ -1,6 +1,7 @@
 package pe.edu.cibertec.proyecto_efrst.firebase
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 object AuthManager {
 
@@ -13,7 +14,12 @@ object AuthManager {
                     val uid = auth.currentUser?.uid
                     callback(true, uid, null)
                 } else {
-                    callback(false, null, task.exception?.message)
+                    val exception = task.exception
+                    if (exception is FirebaseAuthUserCollisionException) {
+                        callback(false, null, "El correo ya está registrado")
+                    } else {
+                        callback(false, null, exception?.message)
+                    }
                 }
             }
     }

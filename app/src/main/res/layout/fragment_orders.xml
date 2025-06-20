@@ -18,19 +18,27 @@
         android:fontFamily="@font/abril_fatface_regular"
         android:textColor="@color/app_fondo" />
 
-    <!-- Texto vacío -->
-    <TextView
-        android:id="@+id/tvEmptyOrders"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="No tienes órdenes registradas"
-        android:visibility="gone"
-        android:textSize="16sp"
-        android:textColor="@android:color/darker_gray" />
-
-    <!-- Lista de órdenes -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvOrders"
+    <!-- Contenedor para la lista y el mensaje vacío -->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- Lista de órdenes -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvOrders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Texto vacío centrado -->
+        <TextView
+            android:id="@+id/tvEmptyOrders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No tienes órdenes registradas"
+            android:visibility="gone"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_gravity="center" />
+    </FrameLayout>
 </LinearLayout>

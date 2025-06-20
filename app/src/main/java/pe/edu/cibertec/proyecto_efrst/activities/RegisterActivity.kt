@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import pe.edu.cibertec.proyecto_efrst.databinding.ActivityRegisterBinding
 import pe.edu.cibertec.proyecto_efrst.firebase.AuthManager
 import pe.edu.cibertec.proyecto_efrst.firebase.RealtimeDatabaseManager
+import pe.edu.cibertec.proyecto_efrst.home.MainActivity
 import pe.edu.cibertec.proyecto_efrst.models.User
 import pe.edu.cibertec.proyecto_efrst.utils.Validators
-import pe.edu.cibertec.proyecto_efrst.home.MainActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -48,7 +48,7 @@ class RegisterActivity : AppCompatActivity() {
             val address = binding.etAddress.text.toString().trim()
             val birthDate = binding.etBirthDate.text.toString().trim()
 
-            // Validaciones
+            // Validaciones básicas
             if (name.isEmpty() || phone.isEmpty() || address.isEmpty() || birthDate.isEmpty()) {
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -61,6 +61,29 @@ class RegisterActivity : AppCompatActivity() {
 
             if (!Validators.isValidPassword(password)) {
                 binding.etPassword.error = "Mínimo 6 caracteres"
+                return@setOnClickListener
+            }
+
+            // Validar teléfono: exactamente 9 dígitos
+            if (!phone.matches(Regex("^\\d{9}$"))) {
+                binding.etPhone.error = "El teléfono debe tener 9 dígitos"
+                return@setOnClickListener
+            }
+
+            // Validar fecha de nacimiento no futura
+            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val birthDateDate = try {
+                sdf.parse(birthDate)
+            } catch (e: Exception) {
+                null
+            }
+            val today = Calendar.getInstance().time
+
+            if (birthDateDate == null) {
+                binding.etBirthDate.error = "Fecha inválida"
+                return@setOnClickListener
+            } else if (birthDateDate.after(today)) {
+                binding.etBirthDate.error = "La fecha no puede ser futura"
                 return@setOnClickListener
             }
 
@@ -86,7 +109,6 @@ class RegisterActivity : AppCompatActivity() {
                     address = address,
                     birthDate = birthDate
                 )
-                // ✅ Guardar en Realtime Database
                 RealtimeDatabaseManager.saveUser(user) { saved ->
                     if (saved) {
                         Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
@@ -97,6 +119,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
             } else {
+                // Mostrar mensaje específico si email ya registrado
                 Toast.makeText(this, errorMsg ?: "Error registrando", Toast.LENGTH_SHORT).show()
             }
         }
