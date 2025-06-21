@@ -45,22 +45,4 @@ Aplicación móvil desarrollada en Android Studio que permite a los usuarios com
 
 ## 🧪 Estructura del proyecto
 
-app/
-├── java/pe/edu/cibertec/proyecto_efrst/
-│ ├── activities/
-│ ├── adapters/
-│ ├── firebase/
-│ ├── fragments/
-│ │ └── home/
-│ ├── models/
-│ ├── utils/
-│ └── viewholders/
-├── res/
-│ ├── drawable/
-│ ├── font/
-│ ├── layout/
-│ ├── menu/
-│ ├── mipmap/
-│ ├── navigation/
-│ └── values/
-└── AndroidManifest.xml
+<pre> ```text app/ ├── java/pe/edu/cibertec/proyecto_efrst/ │ ├── activities/ │ ├── adapters/ │ ├── firebase/ │ ├── fragments/ │ │ └── home/ │ ├── models/ │ ├── utils/ │ └── viewholders/ ├── res/ │ ├── drawable/ │ ├── font/ │ ├── layout/ │ ├── menu/ │ ├── mipmap/ │ ├── navigation/ │ └── values/ └── AndroidManifest.xml ``` </pre>
