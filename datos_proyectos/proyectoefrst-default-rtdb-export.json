@@ -27,6 +27,206 @@
           }
         },
         "total": 166
+      },
+      "-OT34ufCXP1XXiDWyW-w": {
+        "date": "18/06/2025 17:30",
+        "id": "-OT34ufCXP1XXiDWyW-w",
+        "items": {
+          "product19": {
+            "brand": "Tropica",
+            "id": "product19",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F19_Tropica.jpg?alt=media&token=91989a43-f700-4e46-9f68-01c321ed1248",
+            "name": "Marsilea hirsuta 1-2-Grow!",
+            "price": 49,
+            "productId": "product19",
+            "quantity": 1,
+            "stock": 32
+          }
+        },
+        "total": 49
+      },
+      "-OT9wD8-nbQ8zCXSdU6I": {
+        "date": "20/06/2025 01:25",
+        "id": "-OT9wD8-nbQ8zCXSdU6I",
+        "items": {
+          "product7": {
+            "brand": "WeekAqua",
+            "id": "product7",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F07_WeekAqua.jpg?alt=media&token=c9a3e7d7-9287-4774-9177-2844b88f984e",
+            "name": "WEEKAQUA S SERIES",
+            "price": 330,
+            "productId": "product7",
+            "quantity": 1,
+            "stock": 15
+          }
+        },
+        "total": 330
+      },
+      "-OTHyvrVcpRpq0x0zyoK": {
+        "date": "21/06/2025 14:54",
+        "id": "-OTHyvrVcpRpq0x0zyoK",
+        "items": {
+          "product12": {
+            "brand": "SOBO",
+            "id": "product12",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F12_SOBO.jpg?alt=media&token=26559282-84a4-4861-aa91-b039bf95ac68",
+            "name": "Filtro de Mochila WP-606H",
+            "price": 40,
+            "productId": "product12",
+            "quantity": 1,
+            "stock": 40
+          }
+        },
+        "total": 40
+      }
+    },
+    "ATFzt2WTRhSHtd5KpuNFXgCjHrp2": {
+      "-OT3RYJ4NpruzhbPDHmL": {
+        "date": "18/06/2025 19:09",
+        "id": "-OT3RYJ4NpruzhbPDHmL",
+        "items": {
+          "product15": {
+            "brand": "CleanGlass",
+            "id": "product15",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F15_Acuario.jpg?alt=media&token=ab04653c-f9f0-42bb-a366-86c24ee7b3e5",
+            "name": "Acuario Cubo Vidrio Ultra Claro",
+            "price": 48,
+            "productId": "product15",
+            "quantity": 2,
+            "stock": 10
+          },
+          "product2": {
+            "brand": "Tropical",
+            "id": "product2",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
+            "name": "Goldfish Colour Pellet",
+            "price": 35,
+            "productId": "product2",
+            "quantity": 2,
+            "stock": 23
+          }
+        },
+        "total": 166
+      },
+      "-OT3akZ-6uS0pxRrOcPO": {
+        "date": "18/06/2025 19:54",
+        "id": "-OT3akZ-6uS0pxRrOcPO",
+        "items": {
+          "product1": {
+            "brand": "Tropical",
+            "id": "product1",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F01_tropical.jpg?alt=media&token=0d15072c-d326-4343-b902-93c90972b158",
+            "name": "Tropical Supervit mini granulat",
+            "price": 42,
+            "productId": "product1",
+            "quantity": 1,
+            "stock": 1
+          }
+        },
+        "total": 42
+      },
+      "-OT8NrMTspmpueGlxQO6": {
+        "date": "19/06/2025 18:11",
+        "id": "-OT8NrMTspmpueGlxQO6",
+        "items": {
+          "product15": {
+            "brand": "CleanGlass",
+            "id": "product15",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F15_Acuario.jpg?alt=media&token=ab04653c-f9f0-42bb-a366-86c24ee7b3e5",
+            "name": "Acuario Cubo Vidrio Ultra Claro",
+            "price": 48,
+            "productId": "product15",
+            "quantity": 1,
+            "stock": 8
+          },
+          "product17": {
+            "brand": "Tropica",
+            "id": "product17",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F17_Tropica.jpg?alt=media&token=91bf5437-dc49-45a0-bdc7-ac1ead9242cf",
+            "name": "Helanthium Tenellum Green 1-2Grow!",
+            "price": 45,
+            "productId": "product17",
+            "quantity": 2,
+            "stock": 20
+          },
+          "product2": {
+            "brand": "Tropical",
+            "id": "product2",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
+            "name": "Goldfish Colour Pellet",
+            "price": 35,
+            "productId": "product2",
+            "quantity": 2,
+            "stock": 23
+          }
+        },
+        "total": 208
+      },
+      "-OT8PhdfyC6boRo78Mdf": {
+        "date": "19/06/2025 18:19",
+        "id": "-OT8PhdfyC6boRo78Mdf",
+        "items": {
+          "product14": {
+            "brand": "CleanGlass",
+            "id": "product14",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F14_Acuario.jpg?alt=media&token=ef007e06-5b56-4a44-93b9-ec732674e745",
+            "name": "Acuario Rectangular Vidrio Ultra",
+            "price": 74,
+            "productId": "product14",
+            "quantity": 1,
+            "stock": 10
+          },
+          "product18": {
+            "brand": "Tropica",
+            "id": "product18",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F18_Tropica.jpg?alt=media&token=25f9b6a8-fd0e-4e63-bd3e-3eb90c4cb604",
+            "name": "Nymphoides hydrophylla 'Taiwan' 1-2-Grow!",
+            "price": 60,
+            "productId": "product18",
+            "quantity": 2,
+            "stock": 13
+          },
+          "product3": {
+            "brand": "Tropical",
+            "id": "product3",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F03_tropical.jpg?alt=media&token=bc5c55f1-7580-4e2f-920e-73b2cc574447",
+            "name": "Insect Menu Flakes",
+            "price": 60,
+            "productId": "product3",
+            "quantity": 2,
+            "stock": 30
+          }
+        },
+        "total": 314
+      }
+    },
+    "nnRCbzvZJxOrF4TOAtXEYcHPdHA2": {
+      "-OTA3kLtxXch986a8b2p": {
+        "date": "20/06/2025 02:02",
+        "id": "-OTA3kLtxXch986a8b2p",
+        "items": {
+          "product15": {
+            "brand": "CleanGlass",
+            "id": "product15",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F15_Acuario.jpg?alt=media&token=ab04653c-f9f0-42bb-a366-86c24ee7b3e5",
+            "name": "Acuario Cubo Vidrio Ultra Claro",
+            "price": 48,
+            "productId": "product15",
+            "quantity": 3,
+            "stock": 7
+          },
+          "product7": {
+            "brand": "WeekAqua",
+            "id": "product7",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F07_WeekAqua.jpg?alt=media&token=c9a3e7d7-9287-4774-9177-2844b88f984e",
+            "name": "WEEKAQUA S SERIES",
+            "price": 330,
+            "productId": "product7",
+            "quantity": 2,
+            "stock": 14
+          }
+        },
+        "total": 804
       }
     }
   },
@@ -49,7 +249,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
       "name": "Goldfish Colour Pellet",
       "price": 35,
-      "stock": 23
+      "stock": 19
     },
     "product03": {
       "brand": "Tropical",
@@ -59,7 +259,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F03_tropical.jpg?alt=media&token=bc5c55f1-7580-4e2f-920e-73b2cc574447",
       "name": "Insect Menu Flakes",
       "price": 60,
-      "stock": 30
+      "stock": 28
     },
     "product04": {
       "brand": "Tropical",
@@ -99,7 +299,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F07_WeekAqua.jpg?alt=media&token=c9a3e7d7-9287-4774-9177-2844b88f984e",
       "name": "WEEKAQUA S SERIES",
       "price": 330,
-      "stock": 15
+      "stock": 12
     },
     "product08": {
       "brand": "WeekAqua",
@@ -149,7 +349,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F12_SOBO.jpg?alt=media&token=26559282-84a4-4861-aa91-b039bf95ac68",
       "name": "Filtro de Mochila WP-606H",
       "price": 40,
-      "stock": 40
+      "stock": 39
     },
     "product13": {
       "brand": "SOBO",
@@ -169,7 +369,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F14_Acuario.jpg?alt=media&token=ef007e06-5b56-4a44-93b9-ec732674e745",
       "name": "Acuario Rectangular Vidrio Ultra",
       "price": 74,
-      "stock": 10
+      "stock": 9
     },
     "product15": {
       "brand": "CleanGlass",
@@ -179,7 +379,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F15_Acuario.jpg?alt=media&token=ab04653c-f9f0-42bb-a366-86c24ee7b3e5",
       "name": "Acuario Cubo Vidrio Ultra Claro",
       "price": 48,
-      "stock": 10
+      "stock": 4
     },
     "product16": {
       "brand": "CleanGlass",
@@ -199,7 +399,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F17_Tropica.jpg?alt=media&token=91bf5437-dc49-45a0-bdc7-ac1ead9242cf",
       "name": "Helanthium Tenellum Green 1-2Grow!",
       "price": 45,
-      "stock": 20
+      "stock": 18
     },
     "product18": {
       "brand": "Tropica",
@@ -209,7 +409,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F18_Tropica.jpg?alt=media&token=25f9b6a8-fd0e-4e63-bd3e-3eb90c4cb604",
       "name": "Nymphoides hydrophylla 'Taiwan' 1-2-Grow!",
       "price": 60,
-      "stock": 13
+      "stock": 11
     },
     "product19": {
       "brand": "Tropica",
@@ -219,7 +419,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F19_Tropica.jpg?alt=media&token=91989a43-f700-4e46-9f68-01c321ed1248",
       "name": "Marsilea hirsuta 1-2-Grow!",
       "price": 49,
-      "stock": 32
+      "stock": 31
     },
     "product20": {
       "brand": "Tropica",
@@ -251,45 +451,117 @@
       "price": 80,
       "stock": 22
     },
-  "product23": {
-    "brand": "Aquainnova",
-    "category": "Comida para peces",
-    "description": "Para peces herbivoros como Goldfish, Corydoras, Ancistrus",
-    "id": "product23",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F23_Aquainnova.jpg?alt=media&token=c0ee231a-cb96-4009-973b-44b1ea8ff45f",
-    "name": "Papilla Herbivora",
-    "price": 12,
-    "stock": 20
-  },
-  "product24": {
-    "brand": "Aquainnova",
-    "category": "Comida para peces",
-    "description": "Para peces carnivoros como Discos, Bettas, Lonchas",
-    "id": "product24",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F24_Aquainnova.jpg?alt=media&token=423c9cad-f810-4d75-8df4-c00dcbf311e6",
-    "name": "Papilla Carnivora",
-    "price": 14,
-    "stock": 22
-  },
-  "product25": {
-    "brand": "Aquainnova",
-    "category": "Comida para peces",
-    "description": "Para peces en general, además de contar con espirulina, la cual favorece en el color y brillo del pez",
-    "id": "product25",
-    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F25_Aquainnova.jpg?alt=media&token=a1eba790-6832-4a1b-81b6-e55b514acf79",
-    "name": "Papilla Full Color",
-    "price": 17,
-    "stock": 22
-  }
+    "product23": {
+      "brand": "Aquainnova",
+      "category": "Comida para peces",
+      "description": "Para peces herbivoros como Goldfish, Corydoras, Ancistrus",
+      "id": "product23",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F23_Aquainnova.jpg?alt=media&token=c0ee231a-cb96-4009-973b-44b1ea8ff45f",
+      "name": "Papilla Herbivora",
+      "price": 12,
+      "stock": 20
+    },
+    "product24": {
+      "brand": "Aquainnova",
+      "category": "Comida para peces",
+      "description": "Para peces carnivoros como Discos, Bettas, Lonchas",
+      "id": "product24",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F24_Aquainnova.jpg?alt=media&token=423c9cad-f810-4d75-8df4-c00dcbf311e6",
+      "name": "Papilla Carnivora",
+      "price": 14,
+      "stock": 22
+    },
+    "product25": {
+      "brand": "Aquainnova",
+      "category": "Comida para peces",
+      "description": "Para peces en general, además de contar con espirulina, la cual favorece en el color y brillo del pez",
+      "id": "product25",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F25_Aquainnova.jpg?alt=media&token=a1eba790-6832-4a1b-81b6-e55b514acf79",
+      "name": "Papilla Full Color",
+      "price": 17,
+      "stock": 22
+    }
   },
   "users": {
     "4cur8zYU2rciUCSIWxkyvBQ2Ui53": {
-      "address": "asdad",
+      "address": "Mz Y Lt1 Olof Palme",
       "birthDate": "16/06/2025",
       "email": "pedro@gmail.com",
+      "favorites": {
+        "product12": {
+          "brand": "SOBO",
+          "category": "Filtros",
+          "description": "Para acuario 60-100 Litros.",
+          "id": "product12",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F12_SOBO.jpg?alt=media&token=26559282-84a4-4861-aa91-b039bf95ac68",
+          "name": "Filtro de Mochila WP-606H",
+          "price": 40,
+          "stock": 40
+        },
+        "product2": {
+          "brand": "Tropical",
+          "category": "Comida para peces",
+          "description": "Pellet (100ml/36gr)",
+          "id": "product2",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
+          "name": "Goldfish Colour Pellet",
+          "price": 35,
+          "stock": 19
+        },
+        "product21": {
+          "brand": "SunSun",
+          "category": "Filtros",
+          "description": "Incluye material biológico (bioperlas) y carbón activo Excelente diseño, muy fácil de realizar mantenimiento, para acuarios de hasta 190L",
+          "id": "product21",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F21_SunSun.jpg?alt=media&token=2a465e81-b536-4be9-8326-687a8932c929",
+          "name": "FILTRO MOCHILA SUNSUN CBG-800S",
+          "price": 100,
+          "stock": 20
+        }
+      },
       "id": "4cur8zYU2rciUCSIWxkyvBQ2Ui53",
       "name": "pedro",
       "phone": "932864163"
+    },
+    "ATFzt2WTRhSHtd5KpuNFXgCjHrp2": {
+      "address": "dddddddddddddd",
+      "birthDate": "18/06/2025",
+      "email": "lizbeth@gmail.com",
+      "favorites": {
+        "product2": {
+          "brand": "Tropical",
+          "category": "Comida para peces",
+          "description": "Pellet (100ml/36gr)",
+          "id": "product2",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
+          "name": "Goldfish Colour Pellet",
+          "price": 35,
+          "stock": 23
+        }
+      },
+      "id": "ATFzt2WTRhSHtd5KpuNFXgCjHrp2",
+      "name": "Lizbeth Rosmery",
+      "phone": "999999999999999"
+    },
+    "nnRCbzvZJxOrF4TOAtXEYcHPdHA2": {
+      "address": "1",
+      "birthDate": "14/06/1996",
+      "email": "pedro3@gmail.com",
+      "favorites": {
+        "product15": {
+          "brand": "CleanGlass",
+          "category": "Acuarios",
+          "description": "20 x 20 x 25 cm (5 mm) 9 L",
+          "id": "product15",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F15_Acuario.jpg?alt=media&token=ab04653c-f9f0-42bb-a366-86c24ee7b3e5",
+          "name": "Acuario Cubo Vidrio Ultra Claro",
+          "price": 48,
+          "stock": 7
+        }
+      },
+      "id": "nnRCbzvZJxOrF4TOAtXEYcHPdHA2",
+      "name": "Pedro 2",
+      "phone": "123456789"
     }
   }
 }
