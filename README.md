@@ -6,7 +6,7 @@ Aplicación móvil desarrollada en Android Studio que permite a los usuarios com
 
 ## 📱 Capturas
 
-<p align="left">
+<p>
   <img src="https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/Screenshot%2FScreenshot_inicio_sesion.png?alt=media&token=fad2993e-f360-4622-bcde-291cdda4af55" width="200" />
   <img src="https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/Screenshot%2FScreenshot_registro.png?alt=media&token=04f848af-f756-44ee-a0eb-6a9978ab352a" width="200" />
   <img src="https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/Screenshot%2FScreenshot_home.png?alt=media&token=3cc1ee43-6139-4081-a727-326309e9dfa8" width="200" />
