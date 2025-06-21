@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
@@ -66,7 +67,6 @@
         android:id="@+id/ordersFragment"
         android:name="pe.edu.cibertec.proyecto_efrst.fragments.OrdersFragment"
         android:label="Órdenes" >
-        <!-- ✅ Nueva acción agregada -->
         <action
             android:id="@+id/action_ordersFragment_to_orderDetailFragment"
             app:destination="@id/orderDetailFragment" />
@@ -80,4 +80,12 @@
             android:name="order"
             app:argType="pe.edu.cibertec.proyecto_efrst.models.Order" />
     </fragment>
+
+    <!-- ✅ NUEVO FRAGMENTO AGREGADO -->
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="pe.edu.cibertec.proyecto_efrst.fragments.AboutFragment"
+        android:label="Sobre el Proyecto"
+        tools:layout="@layout/fragment_about" />
+
 </navigation>

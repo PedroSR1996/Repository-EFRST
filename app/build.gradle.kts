@@ -56,6 +56,7 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging-ktx")
     implementation("com.google.android.material:material:1.9.0")
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation ("com.stripe:stripe-android:20.34.0")
 
     // Navigation Components (usando alias)
     implementation(libs.androidx.navigation.fragment.ktx)

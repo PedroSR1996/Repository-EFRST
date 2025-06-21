@@ -55,12 +55,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ver todo"
-                android:textColor="@color/app_naranja"
+                android:textColor="@color/white"
                 android:layout_marginBottom="12dp"
                 app:icon="@drawable/ic_all"
                 app:iconPadding="8dp"
                 app:iconGravity="textStart"
-                app:iconTint="@color/app_naranja" />
+                app:iconTint="@color/white"
+                android:backgroundTint="@color/app_morado" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPeces"

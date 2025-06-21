@@ -1,0 +1,295 @@
+{
+  "orders": {
+    "4cur8zYU2rciUCSIWxkyvBQ2Ui53": {
+      "-OT2x84QpdymdB2wAvRW": {
+        "date": "18/06/2025 16:52",
+        "id": "-OT2x84QpdymdB2wAvRW",
+        "items": {
+          "product15": {
+            "brand": "CleanGlass",
+            "id": "product15",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F15_Acuario.jpg?alt=media&token=ab04653c-f9f0-42bb-a366-86c24ee7b3e5",
+            "name": "Acuario Cubo Vidrio Ultra Claro",
+            "price": 48,
+            "productId": "product15",
+            "quantity": 2,
+            "stock": 12
+          },
+          "product2": {
+            "brand": "Tropical",
+            "id": "product2",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
+            "name": "Goldfish Colour Pellet",
+            "price": 35,
+            "productId": "product2",
+            "quantity": 2,
+            "stock": 25
+          }
+        },
+        "total": 166
+      }
+    }
+  },
+  "products": {
+    "product01": {
+      "brand": "Tropical",
+      "category": "Comida para peces",
+      "description": "Pellet (100ml/55gr)",
+      "id": "product1",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F01_tropical.jpg?alt=media&token=0d15072c-d326-4343-b902-93c90972b158",
+      "name": "Tropical Supervit mini granulat",
+      "price": 42,
+      "stock": 0
+    },
+    "product02": {
+      "brand": "Tropical",
+      "category": "Comida para peces",
+      "description": "Pellet (100ml/36gr)",
+      "id": "product2",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
+      "name": "Goldfish Colour Pellet",
+      "price": 35,
+      "stock": 23
+    },
+    "product03": {
+      "brand": "Tropical",
+      "category": "Comida para peces",
+      "description": "Escamas (250ml/50gr)",
+      "id": "product3",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F03_tropical.jpg?alt=media&token=bc5c55f1-7580-4e2f-920e-73b2cc574447",
+      "name": "Insect Menu Flakes",
+      "price": 60,
+      "stock": 30
+    },
+    "product04": {
+      "brand": "Tropical",
+      "category": "Comida para peces",
+      "description": "Granulado con ajo (100ml/60gr)",
+      "id": "product4",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F04_tropical.jpg?alt=media&token=e136f461-20a3-4698-b9aa-4837f58cac02",
+      "name": "D-Allioplus Granulat",
+      "price": 60,
+      "stock": 50
+    },
+    "product05": {
+      "brand": "Azoo Ultra Fresh",
+      "category": "Comida para peces",
+      "description": "Granulado (60ml/20gr)",
+      "id": "product5",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F05_UltraFresh.jpg?alt=media&token=57a54a76-c714-4d11-9573-e664523e37b8",
+      "name": "Betta Pro",
+      "price": 24,
+      "stock": 50
+    },
+    "product06": {
+      "brand": "WeekAqua",
+      "category": "Iluminacion",
+      "description": "Espectro completo RGB+UV 30 cm.",
+      "id": "product6",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F06_WeekAqua.jpg?alt=media&token=ce0e0034-699c-49a5-9ef1-86c2810e85f3",
+      "name": "WEEKAQUA Mini9Pro",
+      "price": 130,
+      "stock": 20
+    },
+    "product07": {
+      "brand": "WeekAqua",
+      "category": "Iluminacion",
+      "description": "Espectro completo RGB+UV 40cm.",
+      "id": "product7",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F07_WeekAqua.jpg?alt=media&token=c9a3e7d7-9287-4774-9177-2844b88f984e",
+      "name": "WEEKAQUA S SERIES",
+      "price": 330,
+      "stock": 15
+    },
+    "product08": {
+      "brand": "WeekAqua",
+      "category": "Iluminacion",
+      "description": "Espectro completo RGB+UV 60cm.",
+      "id": "product8",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F08_WeekAqua.jpg?alt=media&token=23f66aa0-5d02-424e-9632-f8b8bd73ea74",
+      "name": "WEEKAQUA P600 PRO",
+      "price": 930,
+      "stock": 20
+    },
+    "product09": {
+      "brand": "Chihiros",
+      "category": "Iluminacion",
+      "description": "Espectro completo RGB+UV 60-80cm.",
+      "id": "product9",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F09_chihiros.jpg?alt=media&token=835f6be8-052b-4481-94e4-6c7be5d06ef5",
+      "name": "Chihiros WRGB2 SLIM60",
+      "price": 520,
+      "stock": 20
+    },
+    "product10": {
+      "brand": "JENECA",
+      "category": "Iluminacion",
+      "description": "Led de color blanco y azul SC-40cm.",
+      "id": "product10",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F10_JENECA.jpg?alt=media&token=48611405-912f-459b-abe4-e0b1d2be147a",
+      "name": "LAMPARA LED (JENECA) SC",
+      "price": 35.5,
+      "stock": 50
+    },
+    "product11": {
+      "brand": "SOBO",
+      "category": "Filtros",
+      "description": "Para acuario 60-120 Litros.",
+      "id": "product11",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F11_SOBO.jpg?alt=media&token=df8e5299-8c0d-4f87-9fbb-47bf6130740d",
+      "name": "Filtro de Mochila WP-607H",
+      "price": 55,
+      "stock": 50
+    },
+    "product12": {
+      "brand": "SOBO",
+      "category": "Filtros",
+      "description": "Para acuario 60-100 Litros.",
+      "id": "product12",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F12_SOBO.jpg?alt=media&token=26559282-84a4-4861-aa91-b039bf95ac68",
+      "name": "Filtro de Mochila WP-606H",
+      "price": 40,
+      "stock": 40
+    },
+    "product13": {
+      "brand": "SOBO",
+      "category": "Filtros",
+      "description": "Para acuario 80-140 Litros.",
+      "id": "product13",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F13_SOBO.jpg?alt=media&token=6708eeb2-2750-4c8e-ad9c-7d253f9c2226",
+      "name": "Filtro Interno FH-1904",
+      "price": 60,
+      "stock": 30
+    },
+    "product14": {
+      "brand": "CleanGlass",
+      "category": "Acuarios",
+      "description": "Claro 40 x 25 x 30 cm (5 mm) 27 L",
+      "id": "product14",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F14_Acuario.jpg?alt=media&token=ef007e06-5b56-4a44-93b9-ec732674e745",
+      "name": "Acuario Rectangular Vidrio Ultra",
+      "price": 74,
+      "stock": 10
+    },
+    "product15": {
+      "brand": "CleanGlass",
+      "category": "Acuarios",
+      "description": "20 x 20 x 25 cm (5 mm) 9 L",
+      "id": "product15",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F15_Acuario.jpg?alt=media&token=ab04653c-f9f0-42bb-a366-86c24ee7b3e5",
+      "name": "Acuario Cubo Vidrio Ultra Claro",
+      "price": 48,
+      "stock": 10
+    },
+    "product16": {
+      "brand": "CleanGlass",
+      "category": "Acuarios",
+      "description": "Claro 45 x 29 x 34 cm (5 mm) 40 L",
+      "id": "product16",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F16_Acuario.jpg?alt=media&token=a974b4a4-6bf3-4770-b08c-011fc58808d2",
+      "name": "Acuario Rectangular Vidrio Ultra",
+      "price": 120,
+      "stock": 14
+    },
+    "product17": {
+      "brand": "Tropica",
+      "category": "Plantas",
+      "description": "La Hellanthium tenellum 'Green' seguramente sea sino la más, una de las plantas bajas más vendidas de PezVerde.",
+      "id": "product17",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F17_Tropica.jpg?alt=media&token=91bf5437-dc49-45a0-bdc7-ac1ead9242cf",
+      "name": "Helanthium Tenellum Green 1-2Grow!",
+      "price": 45,
+      "stock": 20
+    },
+    "product18": {
+      "brand": "Tropica",
+      "category": "Plantas",
+      "description": "La planta puede llegar a ser de 15-30 cm de alto y 10-15 cm de ancho. Esta variante se caracteriza por el intenso color verde claro transparente.",
+      "id": "product18",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F18_Tropica.jpg?alt=media&token=25f9b6a8-fd0e-4e63-bd3e-3eb90c4cb604",
+      "name": "Nymphoides hydrophylla 'Taiwan' 1-2-Grow!",
+      "price": 60,
+      "stock": 13
+    },
+    "product19": {
+      "brand": "Tropica",
+      "category": "Plantas",
+      "description": "La Marsilea hirsuta es una planta muy apreciada por nuestros clientes y es que al ser de tipo rastrero permte generar un pseudotapizado sin necesidad de una gran pantalla o de inyectar CO2.",
+      "id": "product19",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F19_Tropica.jpg?alt=media&token=91989a43-f700-4e46-9f68-01c321ed1248",
+      "name": "Marsilea hirsuta 1-2-Grow!",
+      "price": 49,
+      "stock": 32
+    },
+    "product20": {
+      "brand": "Tropica",
+      "category": "Plantas",
+      "description": "La Rotala macrandra es una planta que destaca por su color rosa intenso con zonas más rojizas.",
+      "id": "product20",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F20_Tropica.jpg?alt=media&token=4eb7deac-7212-4fbf-8fa9-ba69a89e17ab",
+      "name": "Rotala macrandra 1-2-Grow!",
+      "price": 52,
+      "stock": 12
+    },
+    "product21": {
+      "brand": "SunSun",
+      "category": "Filtros",
+      "description": "Incluye material biológico (bioperlas) y carbón activo Excelente diseño, muy fácil de realizar mantenimiento, para acuarios de hasta 190L",
+      "id": "product21",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F21_SunSun.jpg?alt=media&token=2a465e81-b536-4be9-8326-687a8932c929",
+      "name": "FILTRO MOCHILA SUNSUN CBG-800S",
+      "price": 100,
+      "stock": 20
+    },
+    "product22": {
+      "brand": "SunSun",
+      "category": "Filtros",
+      "description": "500L/H (flujo real) 24.5 x 13.5 x 6 cm Caudal Regulable 4 Canastillas",
+      "id": "product22",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F22_SunSun.jpg?alt=media&token=5552a084-0e80-49a4-92ae-4d8f59be0791",
+      "name": "FILTRO CANISTER MOCHILA HBL-801",
+      "price": 80,
+      "stock": 22
+    },
+  "product23": {
+    "brand": "Aquainnova",
+    "category": "Comida para peces",
+    "description": "Para peces herbivoros como Goldfish, Corydoras, Ancistrus",
+    "id": "product23",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F23_Aquainnova.jpg?alt=media&token=c0ee231a-cb96-4009-973b-44b1ea8ff45f",
+    "name": "Papilla Herbivora",
+    "price": 12,
+    "stock": 20
+  },
+  "product24": {
+    "brand": "Aquainnova",
+    "category": "Comida para peces",
+    "description": "Para peces carnivoros como Discos, Bettas, Lonchas",
+    "id": "product24",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F24_Aquainnova.jpg?alt=media&token=423c9cad-f810-4d75-8df4-c00dcbf311e6",
+    "name": "Papilla Carnivora",
+    "price": 14,
+    "stock": 22
+  },
+  "product25": {
+    "brand": "Aquainnova",
+    "category": "Comida para peces",
+    "description": "Para peces en general, además de contar con espirulina, la cual favorece en el color y brillo del pez",
+    "id": "product25",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F25_Aquainnova.jpg?alt=media&token=a1eba790-6832-4a1b-81b6-e55b514acf79",
+    "name": "Papilla Full Color",
+    "price": 17,
+    "stock": 22
+  }
+  },
+  "users": {
+    "4cur8zYU2rciUCSIWxkyvBQ2Ui53": {
+      "address": "asdad",
+      "birthDate": "16/06/2025",
+      "email": "pedro@gmail.com",
+      "id": "4cur8zYU2rciUCSIWxkyvBQ2Ui53",
+      "name": "pedro",
+      "phone": "932864163"
+    }
+  }
+}
