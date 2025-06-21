@@ -17,8 +17,8 @@
             android:id="@+id/imgProduct"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="fitCenter"
             android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,10 +29,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingStart="12dp"
-            app:layout_constraintStart_toEndOf="@id/imgProduct"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btnRemove">
+            app:layout_constraintEnd_toStartOf="@id/btnRemove"
+            app:layout_constraintStart_toEndOf="@id/imgProduct"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tvProductName"
@@ -46,59 +46,59 @@
                 android:id="@+id/tvProductBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="Marca"
-                android:textSize="14sp"
                 android:textColor="@android:color/darker_gray"
-                android:layout_marginTop="4dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="S/ 0.00"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginTop="4dp" />
+                android:textStyle="bold" />
 
             <!-- Controles de cantidad -->
             <LinearLayout
                 android:id="@+id/quantityLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/btnDecrease"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:adjustViewBounds="true"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Disminuir cantidad"
-                    android:src="@drawable/ic_decrease"
+                    android:padding="0dp"
                     android:scaleType="centerInside"
-                    android:adjustViewBounds="true"
-                    android:padding="0dp"/>
+                    android:src="@drawable/ic_decrease" />
 
                 <TextView
                     android:id="@+id/tvQuantity"
                     android:layout_width="36dp"
                     android:layout_height="24dp"
+                    android:layout_marginHorizontal="6dp"
                     android:gravity="center"
                     android:text="1"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginHorizontal="6dp" />
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/btnIncrease"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:adjustViewBounds="true"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Aumentar cantidad"
-                    android:src="@drawable/ic_increase"
+                    android:padding="0dp"
                     android:scaleType="centerInside"
-                    android:adjustViewBounds="true"
-                    android:padding="0dp"/>
+                    android:src="@drawable/ic_increase" />
             </LinearLayout>
         </LinearLayout>
 
@@ -107,9 +107,9 @@
             android:id="@+id/btnRemove"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_carrito_eliminar"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Eliminar del carrito"
+            android:src="@drawable/ic_carrito_eliminar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

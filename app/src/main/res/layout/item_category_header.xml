@@ -3,8 +3,8 @@
     android:id="@+id/tvCategoryHeader"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="Categoría"
-    android:textStyle="bold"
-    android:textSize="18sp"
     android:background="#EEEEEE"
-    android:padding="8dp"/>
+    android:padding="8dp"
+    android:text="Categoría"
+    android:textSize="18sp"
+    android:textStyle="bold" />

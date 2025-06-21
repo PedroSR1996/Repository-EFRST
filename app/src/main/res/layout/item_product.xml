@@ -17,9 +17,9 @@
             android:id="@+id/imgProduct"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -40,26 +40,26 @@
                 android:id="@+id/tvProductBrand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="Marca"
-                android:textSize="14sp"
                 android:textColor="@android:color/darker_gray"
-                android:layout_marginTop="4dp"/>
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tvProductPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="S/ 0.00"
-                android:textSize="14sp"
-                android:layout_marginTop="4dp" />
+                android:textSize="14sp" />
 
             <!-- Stock + Botón de favorito -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
                 android:gravity="center_vertical"
-                android:layout_marginTop="4dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/tvProductStock"
@@ -73,9 +73,9 @@
                     android:id="@+id/btnFavorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_favorite_border"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Favorito" />
+                    android:contentDescription="Favorito"
+                    android:src="@drawable/ic_favorite_border" />
             </LinearLayout>
 
             <!-- 🔴 Botón Eliminar -->
@@ -83,12 +83,12 @@
                 android:id="@+id/btnRemove"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Eliminar"
-                android:visibility="gone"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@android:color/holo_red_dark"
+                android:text="Eliminar"
                 android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

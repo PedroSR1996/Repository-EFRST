@@ -70,9 +70,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/app_naranja"
                 android:text="Ver mis órdenes"
                 android:textColor="@android:color/white"
-                android:backgroundTint="@color/app_naranja"
                 app:icon="@drawable/ic_orders"
                 app:iconGravity="textStart"
                 app:iconPadding="8dp" />
@@ -84,8 +84,8 @@
         android:id="@+id/footerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnCerrarSesion"
@@ -99,11 +99,11 @@
             android:id="@+id/tvCopyright"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="© 2025 Pedro Sirvas. Todos los derechos reservados."
-            android:textSize="12sp"
-            android:textColor="@color/app_morado"
             android:gravity="center"
             android:paddingTop="12dp"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp"
+            android:text="© 2025 Pedro Sirvas. Todos los derechos reservados."
+            android:textColor="@color/app_morado"
+            android:textSize="12sp" />
     </LinearLayout>
 </RelativeLayout>
