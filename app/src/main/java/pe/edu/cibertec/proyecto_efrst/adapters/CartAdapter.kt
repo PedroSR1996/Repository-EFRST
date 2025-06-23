@@ -41,7 +41,11 @@ class CartAdapter(
                     if (newQty <= item.stock) {
                         onQuantityChange?.invoke(item, newQty)
                     } else {
-                        Toast.makeText(binding.root.context, "Stock insuficiente", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            binding.root.context,
+                            "Stock insuficiente",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -58,7 +62,8 @@ class CartAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
-        val binding = ItemCartProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemCartProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CartViewHolder(binding)
     }
 

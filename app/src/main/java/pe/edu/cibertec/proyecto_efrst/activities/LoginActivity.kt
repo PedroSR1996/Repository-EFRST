@@ -49,13 +49,21 @@ class LoginActivity : AppCompatActivity() {
                 // Obtener el usuario actual de FirebaseAuth para datos extra
                 val firebaseUser = FirebaseAuth.getInstance().currentUser
                 if (firebaseUser != null) {
-                    checkOrCreateUserInDatabase(uid, firebaseUser.email ?: "", firebaseUser.displayName ?: "Usuario")
+                    checkOrCreateUserInDatabase(
+                        uid,
+                        firebaseUser.email ?: "",
+                        firebaseUser.displayName ?: "Usuario"
+                    )
                 } else {
                     // Por si acaso no está logueado aunque dio éxito (poco probable)
                     checkOrCreateUserInDatabase(uid, "", "Usuario")
                 }
             } else {
-                Toast.makeText(this, "Error al iniciar sesión. Verifica email y contraseña.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Error al iniciar sesión. Verifica email y contraseña.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
