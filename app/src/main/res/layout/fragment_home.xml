@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:fitsSystemWindows="true">
 
     <!-- Scrollable contenido principal -->
     <ScrollView
@@ -26,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="@android:color/white"> <!-- Fondo blanco -->
 
                 <TextView
                     android:id="@+id/tvWelcome"
@@ -40,6 +42,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
+
 
             <!-- Carrusel de imágenes -->
             <androidx.viewpager2.widget.ViewPager2

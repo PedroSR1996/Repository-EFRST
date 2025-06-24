@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:fitsSystemWindows="true">
 
     <!-- Contenido desplazable -->
     <ScrollView
@@ -17,8 +18,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:gravity="center_horizontal">
 
             <!-- Título -->
             <TextView
@@ -32,7 +35,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <!-- Campos de entrada (los mismos que ya tenías) -->
+            <!-- Campos de entrada -->
 
             <!-- Nombre -->
             <com.google.android.material.textfield.TextInputLayout
@@ -50,7 +53,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Nombre"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="@color/app_morado"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Repite aquí igual para correo, contraseña, teléfono, dirección y fecha -->
@@ -71,7 +75,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Correo electrónico"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/app_morado"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Contraseña -->
@@ -90,7 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Contraseña"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColor="@color/app_morado"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Teléfono -->
@@ -109,7 +115,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Teléfono"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:textColor="@color/app_morado"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Dirección -->
@@ -128,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Dirección"
-                    android:inputType="textPostalAddress" />
+                    android:inputType="textPostalAddress"
+                    android:textColor="@color/app_morado"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Fecha de nacimiento -->
@@ -149,7 +157,8 @@
                     android:clickable="true"
                     android:focusable="false"
                     android:hint="Fecha de nacimiento (dd/MM/yyyy)"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:textColor="@color/app_morado"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Botón -->
