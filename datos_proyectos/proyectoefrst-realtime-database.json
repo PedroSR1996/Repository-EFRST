@@ -78,6 +78,23 @@
           }
         },
         "total": 40
+      },
+      "-OTIUnifuRvPyXus4TMH": {
+        "date": "21/06/2025 17:17",
+        "id": "-OTIUnifuRvPyXus4TMH",
+        "items": {
+          "product2": {
+            "brand": "Tropical",
+            "id": "product2",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
+            "name": "Goldfish Colour Pellet",
+            "price": 35,
+            "productId": "product2",
+            "quantity": 1,
+            "stock": 19
+          }
+        },
+        "total": 35
       }
     },
     "ATFzt2WTRhSHtd5KpuNFXgCjHrp2": {
@@ -198,6 +215,43 @@
           }
         },
         "total": 314
+      },
+      "-OTKJILM6OMO7BygYypo": {
+        "date": "22/06/2025 01:46",
+        "id": "-OTKJILM6OMO7BygYypo",
+        "items": {
+          "product14": {
+            "brand": "CleanGlass",
+            "id": "product14",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F14_Acuario.jpg?alt=media&token=ef007e06-5b56-4a44-93b9-ec732674e745",
+            "name": "Acuario Rectangular Vidrio Ultra",
+            "price": 74,
+            "productId": "product14",
+            "quantity": 4,
+            "stock": 9
+          }
+        },
+        "total": 296
+      }
+    },
+    "OMRCgJks2mclAZcYnFKNoi5ujw92": {
+      "-OTUE_0zOaaw-4TnuOh2": {
+        "date": "23/06/2025 19:02",
+        "id": "-OTUE_0zOaaw-4TnuOh2",
+        "items": {
+          "product19": {
+            "brand": "Tropica",
+            "id": "product19",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F19_Tropica.jpg?alt=media&token=91989a43-f700-4e46-9f68-01c321ed1248",
+            "name": "Marsilea hirsuta 1-2-Grow!",
+            "price": 49,
+            "productId": "product19",
+            "quantity": 15,
+            "stability": 0,
+            "stock": 31
+          }
+        },
+        "total": 735
       }
     },
     "nnRCbzvZJxOrF4TOAtXEYcHPdHA2": {
@@ -228,6 +282,26 @@
         },
         "total": 804
       }
+    },
+    "swXAMNtrjyQ924Xw7akHoWnAGZg2": {
+      "-OTUEA8ph-WZVbqOQ-1t": {
+        "date": "23/06/2025 19:00",
+        "id": "-OTUEA8ph-WZVbqOQ-1t",
+        "items": {
+          "product13": {
+            "brand": "SOBO",
+            "id": "product13",
+            "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F13_SOBO.jpg?alt=media&token=6708eeb2-2750-4c8e-ad9c-7d253f9c2226",
+            "name": "Filtro Interno FH-1904",
+            "price": 60,
+            "productId": "product13",
+            "quantity": 2,
+            "stability": 0,
+            "stock": 30
+          }
+        },
+        "total": 120
+      }
     }
   },
   "products": {
@@ -249,7 +323,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
       "name": "Goldfish Colour Pellet",
       "price": 35,
-      "stock": 19
+      "stock": 18
     },
     "product03": {
       "brand": "Tropical",
@@ -359,7 +433,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F13_SOBO.jpg?alt=media&token=6708eeb2-2750-4c8e-ad9c-7d253f9c2226",
       "name": "Filtro Interno FH-1904",
       "price": 60,
-      "stock": 30
+      "stock": 28
     },
     "product14": {
       "brand": "CleanGlass",
@@ -369,7 +443,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F14_Acuario.jpg?alt=media&token=ef007e06-5b56-4a44-93b9-ec732674e745",
       "name": "Acuario Rectangular Vidrio Ultra",
       "price": 74,
-      "stock": 9
+      "stock": 5
     },
     "product15": {
       "brand": "CleanGlass",
@@ -419,7 +493,7 @@
       "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F19_Tropica.jpg?alt=media&token=91989a43-f700-4e46-9f68-01c321ed1248",
       "name": "Marsilea hirsuta 1-2-Grow!",
       "price": 49,
-      "stock": 31
+      "stock": 16
     },
     "product20": {
       "brand": "Tropica",
@@ -486,6 +560,18 @@
     "4cur8zYU2rciUCSIWxkyvBQ2Ui53": {
       "address": "Mz Y Lt1 Olof Palme",
       "birthDate": "16/06/2025",
+      "cart": {
+        "product13": {
+          "brand": "SOBO",
+          "id": "product13",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F13_SOBO.jpg?alt=media&token=6708eeb2-2750-4c8e-ad9c-7d253f9c2226",
+          "name": "Filtro Interno FH-1904",
+          "price": 60,
+          "productId": "product13",
+          "quantity": 1,
+          "stock": 30
+        }
+      },
       "email": "pedro@gmail.com",
       "favorites": {
         "product12": {
@@ -527,7 +613,26 @@
       "address": "dddddddddddddd",
       "birthDate": "18/06/2025",
       "email": "lizbeth@gmail.com",
+      "id": "ATFzt2WTRhSHtd5KpuNFXgCjHrp2",
+      "name": "Lizbeth Rosmery",
+      "phone": "999999999999999"
+    },
+    "OMRCgJks2mclAZcYnFKNoi5ujw92": {
+      "address": "Mz.A lt.9 villa paraiso",
+      "birthDate": "14/12/1998",
+      "email": "Lizbeth.rosmery.14@gmail.com",
       "favorites": {
+        "product1": {
+          "brand": "Tropical",
+          "category": "Comida para peces",
+          "description": "Pellet (100ml/55gr)",
+          "id": "product1",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F01_tropical.jpg?alt=media&token=0d15072c-d326-4343-b902-93c90972b158",
+          "name": "Tropical Supervit mini granulat",
+          "price": 42,
+          "stability": 0,
+          "stock": 0
+        },
         "product2": {
           "brand": "Tropical",
           "category": "Comida para peces",
@@ -536,12 +641,24 @@
           "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
           "name": "Goldfish Colour Pellet",
           "price": 35,
-          "stock": 23
+          "stability": 0,
+          "stock": 18
+        },
+        "product8": {
+          "brand": "WeekAqua",
+          "category": "Iluminacion",
+          "description": "Espectro completo RGB+UV 60cm.",
+          "id": "product8",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F08_WeekAqua.jpg?alt=media&token=23f66aa0-5d02-424e-9632-f8b8bd73ea74",
+          "name": "WEEKAQUA P600 PRO",
+          "price": 930,
+          "stability": 0,
+          "stock": 20
         }
       },
-      "id": "ATFzt2WTRhSHtd5KpuNFXgCjHrp2",
+      "id": "OMRCgJks2mclAZcYnFKNoi5ujw92",
       "name": "Lizbeth Rosmery",
-      "phone": "999999999999999"
+      "phone": "941514110"
     },
     "nnRCbzvZJxOrF4TOAtXEYcHPdHA2": {
       "address": "1",
@@ -562,6 +679,62 @@
       "id": "nnRCbzvZJxOrF4TOAtXEYcHPdHA2",
       "name": "Pedro 2",
       "phone": "123456789"
+    },
+    "swXAMNtrjyQ924Xw7akHoWnAGZg2": {
+      "address": "Mz Y Lt1 Olof Palme",
+      "birthDate": "14/06/1996",
+      "cart": {
+        "product3": {
+          "brand": "Tropical",
+          "id": "product3",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F03_tropical.jpg?alt=media&token=bc5c55f1-7580-4e2f-920e-73b2cc574447",
+          "name": "Insect Menu Flakes",
+          "price": 60,
+          "productId": "product3",
+          "quantity": 1,
+          "stability": 0,
+          "stock": 28
+        }
+      },
+      "email": "pjasirvasrueda@gmail.com",
+      "favorites": {
+        "product1": {
+          "brand": "Tropical",
+          "category": "Comida para peces",
+          "description": "Pellet (100ml/55gr)",
+          "id": "product1",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F01_tropical.jpg?alt=media&token=0d15072c-d326-4343-b902-93c90972b158",
+          "name": "Tropical Supervit mini granulat",
+          "price": 42,
+          "stability": 0,
+          "stock": 0
+        },
+        "product13": {
+          "brand": "SOBO",
+          "category": "Filtros",
+          "description": "Para acuario 80-140 Litros.",
+          "id": "product13",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F13_SOBO.jpg?alt=media&token=6708eeb2-2750-4c8e-ad9c-7d253f9c2226",
+          "name": "Filtro Interno FH-1904",
+          "price": 60,
+          "stability": 0,
+          "stock": 30
+        },
+        "product2": {
+          "brand": "Tropical",
+          "category": "Comida para peces",
+          "description": "Pellet (100ml/36gr)",
+          "id": "product2",
+          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/proyectoefrst.firebasestorage.app/o/productos%2F02_tropical.jpg?alt=media&token=1420debc-8e1e-44a9-acfc-4a89dee3a586",
+          "name": "Goldfish Colour Pellet",
+          "price": 35,
+          "stability": 0,
+          "stock": 18
+        }
+      },
+      "id": "swXAMNtrjyQ924Xw7akHoWnAGZg2",
+      "name": "Pedro Sirvas",
+      "phone": "932864163"
     }
   }
 }
